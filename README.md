@@ -1,2 +1,2 @@
-# bluesky
-7 minute journal app
+# mockingbird
+10 minute journal app
