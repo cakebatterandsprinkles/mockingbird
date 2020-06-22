@@ -1,0 +1,208 @@
+.mainContainer {
+  padding-bottom: 3.5rem;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainWrapper {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+.contentWrapper {
+  width: 60rem;
+  flex-basis:auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.birdImg {
+  height: 85vh;
+  width: auto;
+}
+
+.questions {
+  margin: 1.5rem 4rem 0 4rem;
+}
+
+.mainHeader {
+  margin-left: 4rem;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: var(--headingFont);
+}
+
+.heading {
+  border-bottom: 1px solid var(--black);
+  font-size: 1.1rem;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+  font-weight: bold;
+  font-family: var(--headingFont);
+}
+
+.flexContainerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 0.2rem;
+}
+
+.flexContainerColumn {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.flexContainerColumn p {
+  font-size: .9rem;
+  line-height: 1.1rem;
+}
+
+.paragraph {
+  margin-bottom: 0.2rem;
+}
+
+.border {
+  border: 2px solid var(--black);
+  margin-right: 2rem;
+  margin-top: 1rem;
+}
+
+.link {
+  color: var(--black);
+  text-decoration-color: var(--black);
+  margin-left: .5rem;
+}
+
+.link:hover {
+  color: var(--purple);
+}
+
+.footer {
+  color: var(--black) !important;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  width: 100%;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--offwhite);
+}
+
+.footerText {
+  display: flex;
+}
+
+@media (max-width: 1200px) {
+.mainHeader {
+  margin-left: 2rem;
+  font-size: 1.5rem;
+}
+
+.heading {
+  font-size: 1rem;
+}
+
+.questions {
+  margin: 1.5rem 2rem 0 2rem;
+}
+
+.flexContainerColumn p {
+  font-size: .8rem;
+  line-height: 1rem;
+}
+}
+
+@media (max-width: 1000px) {
+  .mainContainer {
+    padding-bottom: 5rem;
+  }
+
+  .birdImg {
+    height: 60vh;
+    width: auto;
+  }
+
+  .mainWrapper {
+    flex-direction: column;
+    padding: 0 2rem;
+  }
+
+  .contentWrapper {
+    margin-top: 2rem;
+    width: 100%;
+    flex-basis:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .questions {
+    width:70vw;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+  }
+
+  .mainHeader {
+    margin-left: 0;
+  }
+
+  .footer {
+    font-size: .8rem;
+  }
+
+}
+
+@media (max-width: 700px) {
+  .mainContainer {
+    padding-bottom: 5rem;
+  }
+
+  .birdImg {
+    width: 100%;
+    height: auto;
+  }
+
+  .mainWrapper {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .questions {
+    width:80vw;
+  }
+
+  .mainHeader {
+    font-size: 1.2rem;
+  }
+
+  .heading {
+    font-size: .9rem;
+  }
+
+  .flexContainerColumn p {
+    font-size: .75rem;
+    line-height: .9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .contentWrapper {
+    width: 90vw;
+    padding-bottom: 2rem;
+  }
+
+  .footer {
+    font-size: .65rem;
+  }
+}

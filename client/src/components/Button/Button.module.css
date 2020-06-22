@@ -1,0 +1,24 @@
+.link {
+  padding: 0.4rem 1rem .5rem 1rem; 
+  border: 1px solid var(--black);
+  margin-right: 2rem;
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: .9rem;
+}
+
+.link:hover,
+.link:focus,
+.link:active {
+  background-color: var(--yellow);
+  transition-duration: 0.3s;
+} 
+
+@media (max-width: 600px) {
+  .link {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+  }
+}
