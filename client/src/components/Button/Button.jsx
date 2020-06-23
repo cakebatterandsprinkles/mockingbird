@@ -1,17 +1,16 @@
 import React from "react";
-import classes from "./Button.module.css";
 import { NavLink } from "react-router-dom";
 
 const Button = (props) => {
   return (
-    <div className={classes.button}>
+    <div>
       <NavLink
         to={props.link}
         exact
         activeStyle={{
           backgroundColor: `#ffd100`
         }}
-        className={classes.link}
+        className={props.buttonStyle}
       >
         {props.name}
       </NavLink>

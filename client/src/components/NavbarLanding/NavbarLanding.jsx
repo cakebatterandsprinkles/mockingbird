@@ -26,8 +26,8 @@ class NavbarLanding extends Component {
             <p className={classes.logoText}>Mockingbird</p>
         </Link>
         <div className={classes.flexContainerRowRight}>
-          <Button name="Sign Up" link="/signup" />
-          <Button name="Login" link="/login" />
+          <Button name="Sign Up" link="/signup" buttonStyle={classes.link}/>
+          <Button name="Login" link="/login" buttonStyle={classes.link}/>
           <div className={classes.changeColorBtn} onClick={this.reverseColor}>
             <p>◐</p>
           </div>
