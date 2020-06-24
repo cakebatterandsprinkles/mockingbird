@@ -24,7 +24,7 @@ class NavbarUser extends Component {
       <div className={classes.mainFlexContainer}>
         <div className={classes.flexContainerRow}>
          <Link 
-          to="/"
+          to="/today"
           exact 
           className={classes.flexContainerRow}>
             <img src={Logo} alt="mockingbird logo" className={classes.bird} />
