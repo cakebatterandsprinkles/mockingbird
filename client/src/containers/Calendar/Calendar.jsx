@@ -3,6 +3,12 @@ import LegendFooter from "../../components/LegendFooter/LegendFooter";
 import classes from "./Calendar.module.css";
 import Drawer from "../Drawer/Drawer";
 import CloseButton from "../../assets/closeButton.png";
+import Circle from "../../assets/circle.png";
+import Star from "../../assets/star.png";
+import Triangle from "../../assets/triangle.png";
+import Rectangle from "../../assets/rectangle.png";
+import Pentagon from "../../assets/pentagon.png";
+import Plus from "../../assets/plus.png";
 import {
   getMonthName,
   getDaysInMonth,
@@ -142,11 +148,11 @@ class Calendar extends Component {
           <div className={classes.month}>
             <h2>
               <span onClick={this.getPrevMonth} className={classes.arrow}>
-                ↞
+                ◀
               </span>{" "}
               {this.state.monthName}{" "}
               <span onClick={this.getNextMonth} className={classes.arrow}>
-                ↠
+                ▶
               </span>
             </h2>
           </div>
@@ -175,26 +181,51 @@ class Calendar extends Component {
             />
             <div className={classes.drawerContent}>
               <div className={classes.heading}>{this.state.date}</div>
-              <div className={classes.notDoneContainer}>
+              <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-
+                  <img src={Circle} alt="circle icon" className={classes.icon}/>
                   <div className={classes.headerContainer}>
-                    <p>To Be Done:</p>
-                  </div>
-
-                </div>
-              </div>
-              <div className={classes.inProgressContainer}>
-                <div className={classes.wrapper}>
-                  <div className={classes.headerContainer}>
-                    <p>In Progress:</p>
+                    <p>3 of the interesting / weird things you heard somebody say:</p>
                   </div>
                 </div>
               </div>
-              <div className={classes.doneContainer}>
+              <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
+                  <img src={Triangle} alt="triangle icon" className={classes.icon}/>
                   <div className={classes.headerContainer}>
-                    <p>Done:</p>
+                    <p>3 of the interesting / weird things you saw:</p>
+                  </div>
+                </div>
+              </div>
+              <div className={classes.sectionContainer}>
+                <div className={classes.wrapper}>
+                  <img src={Star} alt="star icon" className={classes.icon}/>
+                  <div className={classes.headerContainer}>
+                    <p>3 of the interesting / weird things you thought about:</p>
+                  </div>
+                </div>
+              </div>
+              <div className={classes.sectionContainer}>
+                <div className={classes.wrapper}>
+                  <img src={Rectangle} alt="rectangle icon" className={classes.icon}/>
+                  <div className={classes.headerContainer}>
+                    <p>3 words to describe today:</p>
+                  </div>
+                </div>
+              </div>
+              <div className={classes.sectionContainer}>
+                <div className={classes.wrapper}>
+                  <img src={Pentagon} alt="pentagon icon" className={classes.icon}/>
+                  <div className={classes.headerContainer}>
+                    <p>1 new thing you learned or tried for the first time:</p>
+                  </div>
+                </div>
+              </div>
+              <div className={classes.sectionContainer}>
+                <div className={classes.wrapper}>
+                  <img src={Plus} alt="plus icon" className={classes.icon}/>
+                  <div className={classes.headerContainer}>
+                    <p>1 thing you want to add:</p>
                   </div>
                 </div>
               </div>

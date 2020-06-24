@@ -29,7 +29,7 @@ class LegendFooter extends Component {
         </div>
         <div className={classes.legendItem}>
           <img src={Triangle} alt="triangle" className={classes.icon}/>
-          <p className={classes.footerText}>Heard</p>
+          <p className={classes.footerText}>Saw</p>
         </div>
         <div className={classes.legendItem}>
           <img src={Star} alt="star" className={classes.icon}/>
