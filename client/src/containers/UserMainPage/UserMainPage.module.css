@@ -1,0 +1,148 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: space-between;
+  align-items: space-around;
+  position: relative;
+}
+
+.mainWrapper {
+  padding: 1rem;
+  min-height: 90vh;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+}
+
+.flexContainerRow {
+  width: 100%;
+  display:flex;
+  justify-content: space-evenly;
+  align-items:center;
+  padding-bottom:2rem;
+}
+
+.box {
+  width: 30%;
+  height: 35vh;
+  background-color: var(--offwhite);
+  border-radius: 20px;
+}
+
+#yellow {
+  border: 5px solid var(--yellow);  
+}
+
+#orange {
+  border: 5px solid var(--orange);  
+}
+
+#red{
+  border: 5px solid var(--red);  
+}
+
+#darkgreen {
+  border: 5px solid var(--darkgreen);  
+}
+
+#blue {
+  border: 5px solid var(--blue);  
+}
+
+#purple{
+  border: 5px solid var(--purple);  
+}
+
+.headerContainer {
+  font-family: var(--headingFont);
+  width: 90%;
+  font-weight: 700;
+  margin: 1rem;
+  font-size: 1rem;
+  color: var(--black) !important;
+}
+
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin: 1.2rem 0.5rem 0.5rem 1.2rem;
+}
+
+.icon {
+  height: 1.2rem;
+  width: auto;
+  cursor: pointer;
+}
+
+.formGroupContainer {
+  display: flex;
+  justify-content:center;
+  align-items:baseline;
+  width:90%;
+}
+
+.formGroupContainer input {
+  padding: .25rem 1rem;
+  font-size: 1rem;
+  font-family: var(--headingFont);
+  width: 100%;
+  color: var(--black);
+  border-radius: 10px;
+  border: 1px solid var(--darkgray);
+  margin-bottom: .75rem;
+}
+
+.formGroupContainer label {
+  font-family:var(--headingFont);
+  font-weight:500;
+  margin: 0 1rem; 
+  padding-left:.1rem;
+  font-size: 1.1rem;
+  color: var(--black);
+}
+
+.footer {
+  color: var(--black) !important;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  width: 100%;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--offwhite);
+}
+@media (max-width: 1200px) {
+  .mainContainer {
+    height: 100vh;
+  }
+
+  .flexContainerRow {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:center;
+    padding-bottom:0;
+  } 
+
+  .box {
+    width: 90%;
+    margin-bottom:1rem;
+  }
+
+  #yellow{
+    margin-top:70rem;
+  }
+
+  #purple{
+    margin-bottom:5rem;
+  }
+
+}
