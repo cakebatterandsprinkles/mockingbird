@@ -1,0 +1,26 @@
+.formGroupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  width: 90%;
+}
+
+.formGroupContainer input {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  font-family: var(--headingFont);
+  width: 100%;
+  color: var(--black);
+  border-radius: 7px;
+  border: 1px solid var(--darkgray);
+  margin-bottom: 0.75rem;
+}
+
+.formGroupContainer label {
+  font-family: var(--regularFont);
+  font-weight: 700;
+  margin: 0 1rem;
+  padding-left: 0.1rem;
+  font-size: 1.25rem;
+  color: var(--turquoise);
+}

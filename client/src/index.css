@@ -12,10 +12,10 @@
   --beige: #c6aa76;
   --purple: #aa82fe;
   --darkgray: #535353;
-  --lightgray: #d3d3d3;
+  --lightgray: #e0e0e0;
   --offwhite: #fbfbf8;
-  --regularFont: 'Open Sans', sans-serif;
-  --headingFont: 'Comfortaa', cursive;
+  --regularFont: "Open Sans", sans-serif;
+  --headingFont: "Comfortaa", cursive;
 }
 
 body,
@@ -23,7 +23,7 @@ html {
   margin: 0;
   padding: 0;
   background-color: var(--lightgray);
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

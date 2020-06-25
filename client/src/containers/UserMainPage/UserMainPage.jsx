@@ -5,6 +5,8 @@ import Triangle from "../../assets/triangle.png";
 import Rectangle from "../../assets/rectangle.png";
 import Pentagon from "../../assets/pentagon.png";
 import Plus from "../../assets/plus.png";
+import UserForm from "../../components/UserForm/UserForm";
+import Button from "../../components/Button/Button";
 import classes from "./UserMainPage.module.css";
 
 class UserMainPage extends Component {
@@ -16,64 +18,89 @@ class UserMainPage extends Component {
             <div className={classes.box} id={classes.yellow}>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Circle} alt="circle icon" className={classes.icon}/>
+                  <img
+                    src={Circle}
+                    alt="circle icon"
+                    className={classes.icon}
+                  />
                   <div className={classes.headerContainer}>
-                    <p>3 of the interesting / weird things you heard somebody say:</p>
+                    <p>
+                      3 of the interesting / weird things you heard somebody
+                      say:
+                    </p>
                   </div>
                 </div>
+                <UserForm
+                  name="say1"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />
+                <UserForm
+                  name="say2"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />{" "}
+                <UserForm
+                  name="say3"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />
               </div>
             </div>
             <div className={classes.box} id={classes.orange}>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Triangle} alt="triangle icon" className={classes.icon}/>
+                  <img
+                    src={Triangle}
+                    alt="triangle icon"
+                    className={classes.icon}
+                  />
                   <div className={classes.headerContainer}>
                     <p>3 of the interesting / weird things you saw:</p>
                   </div>
                 </div>
-                <div
-                  className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-                >
-                  <label htmlFor="seen1">1. </label>
-                  <input
-                    type="text"
-                    name="seen1"
-                    id="seen1"
-                    onChange={this.handleInputChange}
-                  ></input>
-                </div>
-                <div
-                  className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-                >
-                  <label htmlFor="seen2">2. </label>
-                  <input
-                    type="text"
-                    name="seen2"
-                    id="seen2"
-                    onChange={this.handleInputChange}
-                  ></input>
-                </div>
-                <div
-                  className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-                >
-                  <label htmlFor="seen3">3. </label>
-                  <input
-                    type="text"
-                    name="seen3"
-                    id="seen3"
-                    onChange={this.handleInputChange}
-                  ></input>
-                </div>
+                <UserForm
+                  name="seen1"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />
+                <UserForm
+                  name="seen2"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />{" "}
+                <UserForm
+                  name="seen3"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />
               </div>
             </div>
             <div className={classes.box} id={classes.red}>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Star} alt="star icon" className={classes.icon}/>
+                  <img src={Star} alt="star icon" className={classes.icon} />
                   <div className={classes.headerContainer}>
-                    <p>3 of the interesting / weird things you thought about:</p>
+                    <p>
+                      3 of the interesting / weird things you thought about:
+                    </p>
                   </div>
                 </div>
+                <UserForm
+                  name="thought1"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />
+                <UserForm
+                  name="thought2"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />{" "}
+                <UserForm
+                  name="thought3"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />
               </div>
             </div>
           </div>
@@ -81,17 +108,40 @@ class UserMainPage extends Component {
             <div className={classes.box} id={classes.darkgreen}>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Rectangle} alt="rectangle icon" className={classes.icon}/>
+                  <img
+                    src={Rectangle}
+                    alt="rectangle icon"
+                    className={classes.icon}
+                  />
                   <div className={classes.headerContainer}>
                     <p>3 words to describe today:</p>
                   </div>
                 </div>
+                <UserForm
+                  name="word1"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />
+                <UserForm
+                  name="word2"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />{" "}
+                <UserForm
+                  name="word  3"
+                  content="☁ "
+                  onInputChange={this.handleInputChange}
+                />
               </div>
             </div>
             <div className={classes.box} id={classes.blue}>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Pentagon} alt="pentagon icon" className={classes.icon}/>
+                  <img
+                    src={Pentagon}
+                    alt="pentagon icon"
+                    className={classes.icon}
+                  />
                   <div className={classes.headerContainer}>
                     <p>1 new thing you learned or tried for the first time:</p>
                   </div>
@@ -101,13 +151,23 @@ class UserMainPage extends Component {
             <div className={classes.box} id={classes.purple}>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Plus} alt="plus icon" className={classes.icon}/>
+                  <img src={Plus} alt="plus icon" className={classes.icon} />
                   <div className={classes.headerContainer}>
                     <p>1 thing you want to add:</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div className={classes.buttonContainer}>
+            <p className={classes.warningText}>
+              ʕ•́ᴥ•̀ʔっ Don't forget to save!{" "}
+            </p>
+            <Button
+              link="/calendar"
+              name="(≧◡≦) Save"
+              buttonStyle={classes.link}
+            />
           </div>
         </div>
         <div className={classes.footer}>
