@@ -68,12 +68,14 @@
 .sectionContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .wrapper {
   display: flex;
   align-items: center;
-  margin: 0.3rem 0.5rem 1rem 1.5rem;
+  margin: 0.3rem 0.5rem 0 1.5rem;
+  height: 4.5rem;
 }
 
 .icon {
@@ -88,6 +90,7 @@
   border-bottom: 1px solid var(--black);
   border-radius: 10px;
   text-decoration: none;
+  font-weight: 700;
   color: var(--black);
   font-size: 0.9rem;
   margin-top: 1rem;
@@ -100,6 +103,26 @@
   transition-duration: 0.3s;
 }
 
+.textarea {
+  display: flex;
+  align-self: center;
+  resize: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: var(--headingFont);
+  width: 100%;
+  color: var(--black);
+  border-radius: 7px;
+  border: 1px solid var(--darkgray);
+  margin-bottom: 0.75rem;
+}
+
+.textarea,
+.textarea:hover,
+.textarea:active {
+  outline: none;
+}
+
 .buttonContainer {
   width: 95%;
   display: flex;
@@ -109,6 +132,7 @@
 .warningText {
   color: var(--black);
   margin-right: 1rem;
+  font-weight: 600;
 }
 
 .footer {

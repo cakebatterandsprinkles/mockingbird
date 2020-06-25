@@ -6,10 +6,43 @@ import Rectangle from "../../assets/rectangle.png";
 import Pentagon from "../../assets/pentagon.png";
 import Plus from "../../assets/plus.png";
 import UserForm from "../../components/UserForm/UserForm";
+import UserTextArea from "../../components/UserTextArea/UserTextArea";
 import Button from "../../components/Button/Button";
 import classes from "./UserMainPage.module.css";
 
 class UserMainPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isBigScreen: true,
+    };
+    this.handleWindowResize = this.handleWindowResize.bind(this);
+    this.handleFirstTextarea = this.handleFirstTextarea.bind(this);
+  }
+
+  handleWindowResize() {
+    window.addEventListener("resize", (e) => {
+      if (e.srcElement.outerWidth >= 1200) {
+        this.setState({ isBigScreen: true });
+      } else {
+        this.setState({ isBigScreen: false });
+      }
+    });
+  }
+
+  handleFirstTextarea() {
+    if (window.outerWidth >= 1200) {
+      this.setState({ isBigScreen: true });
+    } else {
+      this.setState({ isBigScreen: false });
+    }
+  }
+
+  componentDidMount() {
+    this.handleWindowResize();
+    this.handleFirstTextarea();
+  }
+
   render() {
     return (
       <div className={classes.mainContainer}>
@@ -146,6 +179,14 @@ class UserMainPage extends Component {
                     <p>1 new thing you learned or tried for the first time:</p>
                   </div>
                 </div>
+                <UserTextArea
+                  name="word  3"
+                  onInputChange={this.handleInputChange}
+                  rows="8"
+                  cols={this.state.isBigScreen ? 50 : 170}
+                  style={classes.textarea}
+                  content=""
+                />
               </div>
             </div>
             <div className={classes.box} id={classes.purple}>
@@ -156,6 +197,14 @@ class UserMainPage extends Component {
                     <p>1 thing you want to add:</p>
                   </div>
                 </div>
+                <UserTextArea
+                  name="word  3"
+                  onInputChange={this.handleInputChange}
+                  rows="8"
+                  cols={this.state.isBigScreen ? 50 : 170}
+                  style={classes.textarea}
+                  content=""
+                />
               </div>
             </div>
           </div>
