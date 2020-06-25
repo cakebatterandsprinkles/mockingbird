@@ -8,6 +8,7 @@ import Plus from "../../assets/plus.png";
 import UserForm from "../../components/UserForm/UserForm";
 import UserTextArea from "../../components/UserTextArea/UserTextArea";
 import Button from "../../components/Button/Button";
+import quotes from "../../data/quotes.json";
 import classes from "./UserMainPage.module.css";
 
 class UserMainPage extends Component {
@@ -15,6 +16,8 @@ class UserMainPage extends Component {
     super();
     this.state = {
       isBigScreen: true,
+      footerText: "",
+      author: "",
     };
     this.handleWindowResize = this.handleWindowResize.bind(this);
     this.handleFirstTextarea = this.handleFirstTextarea.bind(this);
@@ -38,9 +41,19 @@ class UserMainPage extends Component {
     }
   }
 
+  selectFooterText(array) {
+    const randomNum = Math.floor(Math.random() * array.length);
+    this.setState({
+      footerText: array[randomNum].quote,
+      author: array[randomNum].author,
+    });
+    console.log(randomNum, array[randomNum]);
+  }
+
   componentDidMount() {
     this.handleWindowResize();
     this.handleFirstTextarea();
+    this.selectFooterText(quotes);
   }
 
   render() {
@@ -221,7 +234,13 @@ class UserMainPage extends Component {
         </div>
         <div className={classes.footer}>
           <div className={classes.footerText}>
-            <p>Source code: </p>
+            <p>
+              {this.state.footerText}
+              <span className={classes.footerAuthor}>
+                {" "}
+                - {this.state.author}
+              </span>
+            </p>
           </div>
         </div>
       </div>

@@ -148,6 +148,11 @@
   align-items: center;
   background-color: var(--offwhite);
 }
+
+.footerAuthor {
+  font-style: italic;
+}
+
 @media (max-width: 1200px) {
   .mainContainer {
     height: 100vh;

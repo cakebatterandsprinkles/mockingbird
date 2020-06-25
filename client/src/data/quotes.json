@@ -1,0 +1,507 @@
+[
+  {
+    "id": 1,
+    "quote": "Stop acting so small. You are the universe in ecstatic motion.",
+    "author": "Rumi"
+  },
+  {
+    "id": 2,
+    "quote": "The wound is the place where the light enters you.",
+    "author": "Rumi"
+  },
+  {
+    "id": 3,
+    "quote": "Your task is not to seek for love, but merely to seek and find all the barriers within yourself that you have built against it.",
+    "author": "Rumi"
+  },
+  {
+    "id": 4,
+    "quote": "What you seek is seeking you.",
+    "author": "Rumi"
+  },
+  {
+    "id": 5,
+    "quote": "Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.",
+    "author": "Rumi"
+  },
+  {
+    "id": 6,
+    "quote": "Lovers don't finally meet somewhere. They're in each other all along.",
+    "author": "Rumi"
+  },
+  {
+    "id": 7,
+    "quote": "Don’t grieve. Anything you lose comes round in another form.",
+    "author": "Rumi"
+  },
+  {
+    "id": 8,
+    "quote": "Dance, when you're broken open. Dance, if you've torn the bandage off. Dance in the middle of the fighting. Dance in your blood. Dance when you're perfectly free.",
+    "author": "Rumi"
+  },
+  {
+    "id": 9,
+    "quote": "When you do things from your soul, you feel a river moving in you, a joy.",
+    "author": "Rumi"
+  },
+  {
+    "id": 10,
+    "quote": "Raise your words, not voice. It is rain that grows flowers, not thunder.",
+    "author": "Rumi"
+  },
+  {
+    "id": 11,
+    "quote": "Two there are who are never satisfied -- the lover of the world and the lover of knowledge.",
+    "author": "Rumi"
+  },
+  {
+    "id": 12,
+    "quote": "Wherever you are, and whatever you do, be in love.",
+    "author": "Rumi"
+  },
+  {
+    "id": 13,
+    "quote": "Sit, be still, and listen, because you're drunk and we're at the edge of the roof.",
+    "author": "Rumi"
+  },
+  {
+    "id": 14,
+    "quote": "You have to keep breaking your heart until it opens.",
+    "author": "Rumi"
+  },
+  {
+    "id": 15,
+    "quote": "Start a huge, foolish project, like Noah…it makes absolutely no difference what people think of you.",
+    "author": "Rumi"
+  },
+  {
+    "id": 16,
+    "quote": "I closed my mouth and spoke to you in a hundred silent ways.",
+    "author": "Rumi"
+  },
+  {
+    "id": 17,
+    "quote": "A mountain keeps an echo deep inside. That's how I hold your voice.",
+    "author": "Rumi"
+  },
+  {
+    "id": 18,
+    "quote": "Christian, Jew, Muslim, shaman, Zoroastrian, stone, ground, mountain, river, each has a secret way of being with the mystery, unique and not to be judged.",
+    "author": "Rumi"
+  },
+  {
+    "id": 19,
+    "quote": "I didn't come here of my own accord, and I can't leave that way. Whoever brought me here will have to take me home.",
+    "author": "Rumi"
+  },
+  {
+    "id": 20,
+    "quote": "You are not a drop in the ocean. You are the entire ocean in a drop.",
+    "author": "Rumi"
+  },
+  {
+    "id": 21,
+    "quote": "Do not feel lonely, the entire universe is inside you.",
+    "author": "Rumi"
+  },
+  {
+    "id": 22,
+    "quote": "The nitrogen in our DNA, the calcium in our teeth, the iron in our blood, the carbon in our apple pies were made in the interiors of collapsing stars. We are made of starstuff.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 23,
+    "quote": "Every one of us is, in the cosmic perspective, precious. If a human disagrees with you, let him live. In a hundred billion galaxies, you will not find another.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 24,
+    "quote": "If you wish to make an apple pie from scratch, you must first invent the universe.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 25,
+    "quote": "We are a way for the cosmos to know itself.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 26,
+    "quote": "The beauty of a living thing is not the atoms that go into it, but the way those atoms are put together.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 27,
+    "quote": "Understanding is a kind of ecstasy.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 28,
+    "quote": "Books are like seeds. They can lie dormant for centuries and then flower in the most unpromising soil.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 29,
+    "quote": "Nature is always more subtle, more intricate, more elegant than what we are able to imagine.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 30,
+    "quote": "The sky calls to us. If we do not destroy ourselves, we will one day venture to the stars.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 31,
+    "quote": "Atoms are mainly empty space. Matter is composed chiefly of nothing.",
+    "author": "Carl Sagan"
+  },
+  {
+    "id": 32,
+    "quote": "All problems have certain things in common.",
+    "author": "Lynda Barry"
+  },
+  {
+    "id": 33,
+    "quote": "How old do you have to be to make a bad drawing?",
+    "author": "Lynda Barry"
+  },
+  {
+    "id": 34,
+    "quote": "You don't know how today is going to turn out until you live it.",
+    "author": "Unknown"
+  },
+  {
+    "id": 35,
+    "quote": "Be happy for this moment. This moment is your life.",
+    "author": "Omar Khayyam"
+  },
+  {
+    "id": 36,
+    "quote": "To wisely live your life, you don't need to know much. Just remember two main rules for the beginning: You better starve, than eat whatever, and better be alone, than with whoever.",
+    "author": "Omar Khayyam"
+  },
+  {
+    "id": 37,
+    "quote": "Dead yesterdays and unborn tomorrows, why fret about it, if today be sweet.",
+    "author": "Omar Khayyam"
+  },
+  {
+    "id": 38,
+    "quote": "Drink wine and look at the moon, and think of all the civilisations the moon has seen passing by.",
+    "author": "Omar Khayyam"
+  },
+  {
+    "id": 39,
+    "quote": "Those who believe in telekinetics, raise my hand.",
+    "author": "Kurt Vonnegut"
+  },
+  {
+    "id": 40,
+    "quote": "I want to stand as close to the edge as I can without going over. Out on the edge you see all kinds of things you can't see from the center.",
+    "author": "Kurt Vonnegut"
+  },
+  {
+    "id": 41,
+    "quote": "I tell you, we are here on Earth to fart around, and don't let anybody tell you different.",
+    "author": "Kurt Vonnegut"
+  },
+  {
+    "id": 42,
+    "quote": "True terror is to wake up one morning and discover that your high school class is running the country.",
+    "author": "Kurt Vonnegut"
+  },
+  {
+    "id": 43,
+    "quote": "And I urge you to please notice when you are happy, and exclaim or murmur or think at some point, 'If this isn't nice, I don't know what is.",
+    "author": "Kurt Vonnegut"
+  },
+  {
+    "id": 44,
+    "quote": "Here we are, trapped in the amber of the moment. There is no why.",
+    "author": "Kurt Vonnegut"
+  },
+  {
+    "id": 45,
+    "quote": "Another flaw in the human character is that everybody wants to build and nobody wants to do maintenance.",
+    "author": "Kurt Vonnegut"
+  },
+  {
+    "id": 46,
+    "quote": "Of course it is exhausting, having to reason all the time in a universe which wasn't meant to be reasonable.",
+    "author": "Kurt Vonnegut"
+  },
+  {
+    "id": 47,
+    "quote": "But in order to be strong, you have to love yourself, and in order to love yourself, you need thorough self-knowledge, you need to know everything about yourself, including your most hidden secrets, the ones most difficult to accept.",
+    "author": "Susanna Tamaro"
+  },
+  {
+    "id": 49,
+    "quote": "Love doesn't suit the lazy; it requires strong, precise actions.",
+    "author": "Susanna Tamaro"
+  },
+  {
+    "id": 48,
+    "quote": "The universe is big. It’s vast and complicated and ridiculous. And sometimes, very rarely, impossible things just happen and we call them miracles.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 49,
+    "quote": "Do what I do. Hold tight and pretend it’s a plan!",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 50,
+    "quote": "The way I see it, every life is a pile of good things and bad things. The good things don’t always soften the bad things, but vice versa, the bad things don’t always spoil the good things and make them unimportant.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 51,
+    "quote": "You don’t just give up. You don’t just let things happen. You make a stand! You say no! You have the guts to do what’s right, even when everyone else just runs away.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 52,
+    "quote": "Some people live more in twenty years than others do in eighty. It’s not the time that matters, it’s the person.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 53,
+    "quote": "You know, the very powerful and the very stupid have one thing in common: they don’t alter their views to fit the facts; they alter the facts to fit their views.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 54,
+    "quote": "Never cruel or cowardly. Never give up, never give in.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 55,
+    "quote": "Good men don’t need rules.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 56,
+    "quote": "Before I go, I just want to tell you: you were fantastic. Absolutely fantastic. And you know what? So was I.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 57,
+    "quote": "I’ll be a story in your head. That’s okay. We’re all stories in the end. Just make it a good one, eh? ‘Cause it was, you know. It was the best. The daft old man who stole a magic box and ran away. Did I ever tell you that I stole it? Well I borrowed it. I was always going to take it back.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 58,
+    "quote": "If we’re going to die, let’s die looking like a Peruvian folk band.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 59,
+    "quote": "One may tolerate a world of demons for the sake of an angel.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 60,
+    "quote": "Oh, I survived. Brilliant. I love it when I do that.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 61,
+    "quote": "What’s the point in two hearts if you can’t be a bit forgiving now and then?",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 62,
+    "quote": "There’s no point in being grown up if you can’t be childish sometimes.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 63,
+    "quote": "When you’re a kid, they tell you it’s all… Grow up, get a job, get married, get a house, have a kid, and that’s it. But the truth is, the world is so much stranger than that. It’s so much darker. And so much madder. And so much better.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 64,
+    "quote": "Letting it get to you. You know what that’s called? Being alive. Best thing there is. Being alive right now is all that counts.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 65,
+    "quote": "Superior intelligence and senseless cruelty just do not go together.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 66,
+    "quote": "A straight line may be the shortest distance between two points, but it is by no means the most interesting.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 67,
+    "quote": "The universe has to move forward. Pain and loss, they define us as much as happiness or love. Whether it’s a world, or a relationship… Everything has its time. And everything ends.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 68,
+    "quote": "Never ignore coincidence. Unless, of course, you’re busy. In which case, always ignore coincidence.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 69,
+    "quote": "In 900 years of time and space, I’ve never met anyone who wasn’t important.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 70,
+    "quote": "Almost every species in the universe has an irrational fear of the dark. But they’re wrong. ‘Cause it’s not irrational.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 71,
+    "quote": "This is one corner… of one country, in one continent, on one planet that’s a corner of a galaxy that’s a corner of a universe that is forever growing and shrinking and creating and destroying and never remaining the same for a single millisecond. And there is so much, so much to see.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 72,
+    "quote": "There’s something that doesn’t make sense. Let’s go and poke it with a stick.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 73,
+    "quote": "You should always waste time when you don’t have any. Time is not the boss of you. Rule 408.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 74,
+    "quote": "Never knowingly be serious. Rule 27.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 75,
+    "quote": "We all change, when you think about it. We’re all different people all through our lives. And that’s OK, that’s good, you gotta keep moving, so long as you remember all the people that you used to be.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 76,
+    "quote": "As we learn about each other, so we learn about ourselves.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 77,
+    "quote": "Great men are forged in fire. It is the privilege of lesser men to light the flame.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 78,
+    "quote": "Everything ends and it’s always sad, but everything begins again, too. And that’s always happy. Be happy.",
+    "author": "Doctor Who"
+  },
+  {
+    "id": 79,
+    "quote": "It's a cruel and random world, but the chaos is all so beautiful.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 80,
+    "quote": "A lesson without pain is meaningless. That's because no one can gain without sacrificing something. But by enduring that pain and overcoming it, he shall obtain a powerful, unmatched heart. A fullmetal heart.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 81,
+    "quote": "Stand up and walk. Keep moving forward. You've got two good legs. So get up and use them. You're strong enough to make your own path.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 82,
+    "quote": "When I, who is called a 'weapon' or a 'monster', fight a real monster, I can fully realize that I am just a 'human'.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 83,
+    "quote": "Nothing's perfect, the world's not perfect, but it's there for us, trying the best it can. That's what makes it so damn beautiful.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 84,
+    "quote": "War does not determine who is right - only who is left.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 85,
+    "quote": "Dedication is a talent all on its own.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 86,
+    "quote": "How can you move forward if you keep regretting the past?",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 87,
+    "quote": "Even when our eyes are closed, there's a whole world out there that lives outside ourselves and our dreams.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 88,
+    "quote": "Even your gravest mistakes shouldn't stop you from moving forward.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 89,
+    "quote": "Destruction and creation are two sides of the same coin! You must destroy to create! That is the law of the universe!",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 90,
+    "quote": "When you live, your life will end sooner or later. The body will return to the earth. Grass and flowers will grow on top of it. The soul will nourish the hearts... and it will live on in the hearts of other people. Everything in this world flows around and circulates. That goes for human lives too.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 91,
+    "quote": "Like I always say, can't find a door? Make your own.",
+    "author": "Hiromu Arakawa"
+  },
+  {
+    "id": 92,
+    "quote": "We're all born with selfish desires, so we can all relate to those feelings in others. But kindness is something made individually by each person...so it's easy to misunderstand when others are trying to be kind to you.",
+    "author": "Natsuki Takaya"
+  },
+  {
+    "id": 93,
+    "quote": "Don't get lost. Give it a try. Go find the place that you're wishing for.",
+    "author": "Natsuki Takaya"
+  },
+  {
+    "id": 94,
+    "quote": "You flounder through life, struggling desperately so you won't drown, even though you would float if you'd just relax.",
+    "author": "Natsuki Takaya"
+  },
+  {
+    "id": 95,
+    "quote": "My happiness comes from the kindness of those around me.",
+    "author": "Natsuki Takaya"
+  },
+  {
+    "id": 96,
+    "quote": "Why fit in when you were born to stand out?",
+    "author": "Dr. Seuss"
+  },
+  {
+    "id": 97,
+    "quote": "Today you are You, that is truer than true. There is no one alive who is Youer than You.",
+    "author": "Dr. Seuss"
+  },
+  {
+    "id": 98,
+    "quote": "Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind.",
+    "author": "Bernard M. Baruch"
+  },
+  {
+    "id": 99,
+    "quote": "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not.",
+    "author": "Dr. Seuss"
+  },
+  {
+    "id": 100,
+    "quote": "Fantasy is a necessary ingredient in living, it's a way of looking at life through the wrong end of a telescope.",
+    "author": "Dr. Seuss"
+  }
+]
