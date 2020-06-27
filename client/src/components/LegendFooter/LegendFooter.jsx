@@ -24,27 +24,27 @@ class LegendFooter extends Component {
     return (
       <div className={classes.footer}>
         <div className={classes.legendItem}>
-          <img src={Circle} alt="circle" className={classes.icon}/>
-          <p className={classes.footerText}>Said</p>
+          <img src={Circle} alt="circle" className={classes.icon} />
+          <p className={classes.footerText}>Heard</p>
         </div>
         <div className={classes.legendItem}>
-          <img src={Triangle} alt="triangle" className={classes.icon}/>
+          <img src={Triangle} alt="triangle" className={classes.icon} />
           <p className={classes.footerText}>Saw</p>
         </div>
         <div className={classes.legendItem}>
-          <img src={Star} alt="star" className={classes.icon}/>
+          <img src={Star} alt="star" className={classes.icon} />
           <p className={classes.footerText}>Thought</p>
         </div>
         <div className={classes.legendItem}>
-          <img src={Rectangle} alt="rectangle" className={classes.icon}/>
+          <img src={Rectangle} alt="rectangle" className={classes.icon} />
           <p className={classes.footerText}>Words</p>
         </div>
         <div className={classes.legendItem}>
-          <img src={Pentagon} alt="pentagon" className={classes.icon}/>
+          <img src={Pentagon} alt="pentagon" className={classes.icon} />
           <p className={classes.footerText}>First Time</p>
         </div>
         <div className={classes.legendItem}>
-          <img src={Plus} alt="plus shape" className={classes.icon}/>
+          <img src={Plus} alt="plus shape" className={classes.icon} />
           <p className={classes.footerText}>Add</p>
         </div>
       </div>
