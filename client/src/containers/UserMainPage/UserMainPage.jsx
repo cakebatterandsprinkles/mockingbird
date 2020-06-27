@@ -16,6 +16,7 @@ class UserMainPage extends Component {
     super();
     this.state = {
       isBigScreen: true,
+      isSmallScreen: false,
       footerText: "",
       author: "",
     };
@@ -27,8 +28,13 @@ class UserMainPage extends Component {
     window.addEventListener("resize", (e) => {
       if (e.srcElement.outerWidth >= 1200) {
         this.setState({ isBigScreen: true });
-      } else {
+      } else if (
+        e.srcElement.outerWidth < 1200 &&
+        e.srcElement.outerWidth > 600
+      ) {
         this.setState({ isBigScreen: false });
+      } else {
+        this.setState({ isSmallScreen: true });
       }
     });
   }
@@ -36,8 +42,10 @@ class UserMainPage extends Component {
   handleFirstTextarea() {
     if (window.outerWidth >= 1200) {
       this.setState({ isBigScreen: true });
-    } else {
+    } else if (window.outerWidth < 1200 && window.outerWidth > 600) {
       this.setState({ isBigScreen: false });
+    } else {
+      this.setState({ isSmallScreen: true });
     }
   }
 
@@ -195,7 +203,7 @@ class UserMainPage extends Component {
                 <UserTextArea
                   name="word  3"
                   onInputChange={this.handleInputChange}
-                  rows="8"
+                  rows={this.state.isSmallScreen ? 6 : 8}
                   cols={this.state.isBigScreen ? 50 : 170}
                   style={classes.textarea}
                   content=""
@@ -213,7 +221,7 @@ class UserMainPage extends Component {
                 <UserTextArea
                   name="word  3"
                   onInputChange={this.handleInputChange}
-                  rows="8"
+                  rows={this.state.isSmallScreen ? 6 : 8}
                   cols={this.state.isBigScreen ? 50 : 170}
                   style={classes.textarea}
                   content=""

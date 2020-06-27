@@ -24,3 +24,17 @@
   font-size: 1.25rem;
   color: var(--turquoise);
 }
+
+@media (max-width: 600px) {
+  .formGroupContainer input {
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+@media (max-width: 325px) {
+  .formGroupContainer input {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+}

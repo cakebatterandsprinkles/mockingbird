@@ -139,9 +139,10 @@
   color: var(--black) !important;
   position: fixed;
   bottom: 0;
-  padding: 1rem;
+  padding: 1rem 3rem;
   width: 100%;
   font-size: 0.9rem;
+  line-height: 1.1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -167,14 +168,100 @@
 
   .box {
     width: 90%;
+    height: 15rem;
     margin-bottom: 1rem;
   }
 
-  #yellow {
-    margin-top: 56rem;
+  .buttonContainer {
+    margin-top: 0.5rem;
+    margin-bottom: 8rem;
   }
 
-  #purple {
-    margin-bottom: 5rem;
+  #yellow {
+    margin-top: 25rem;
+  }
+
+  .footer {
+    color: var(--black) !important;
+    position: fixed;
+    bottom: 0;
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  #yellow {
+    margin-top: 45rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #yellow {
+    margin-top: 50rem;
+  }
+
+  .box {
+    height: auto;
+  }
+
+  .buttonContainer {
+    margin-bottom: 10rem;
+  }
+
+  .headerContainer {
+    width: 95%;
+    font-size: 0.9rem;
+  }
+
+  .wrapper {
+    height: 3.75rem;
+  }
+
+  .warningText {
+    font-size: 0.8rem;
+  }
+
+  .mainWrapper {
+    padding: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  #yellow {
+    margin-top: 50rem;
+  }
+
+  .buttonContainer {
+    margin-bottom: 10rem;
+  }
+
+  .headerContainer {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .wrapper {
+    height: 3rem;
+  }
+
+  .warningText {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  #yellow {
+    margin-top: 50rem;
+  }
+}
+
+@media (max-width: 325px) {
+  #yellow {
+    margin-top: 45rem;
+  }
+
+  .headerContainer {
+    width: 100%;
+    font-size: 0.65rem;
   }
 }
