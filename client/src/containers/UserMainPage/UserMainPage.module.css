@@ -186,16 +186,13 @@
   }
 
   .footer {
-    color: var(--black) !important;
-    position: fixed;
-    bottom: 0;
     padding: 1rem 2rem;
   }
 }
 
 @media (max-width: 800px) {
   #yellow {
-    margin-top: 45rem;
+    margin-top: 50rem;
   }
 }
 
@@ -227,6 +224,12 @@
 
   .mainWrapper {
     padding: 0;
+  }
+
+  .footer {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    line-height: 1rem;
   }
 }
 
