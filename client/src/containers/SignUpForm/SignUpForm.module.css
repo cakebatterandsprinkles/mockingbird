@@ -225,7 +225,7 @@ input:focus,
 @media (max-width: 600px) {
   .mainContainer {
     width: 80%;
-    padding-top: 8rem;
+    padding-top: 5rem;
   }
 
   .heading {
@@ -236,6 +236,10 @@ input:focus,
     width: 40%;
     border-bottom: 0.09rem solid var(--black);
     margin-bottom: 1.5rem;
+  }
+
+  .formGroupContainer {
+    height: 5rem;
   }
 
   .formGroupContainer label {
