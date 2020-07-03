@@ -19,7 +19,7 @@ const rootReducer = (state = initialState, action) => {
           ...action.payload.currentMonthJournalEntries,
         ],
       };
-    case actionTypes.setNewUserSettings:
+    case actionTypes.setUserData:
       return {
         ...state,
         userEmail: action.payload.email,
