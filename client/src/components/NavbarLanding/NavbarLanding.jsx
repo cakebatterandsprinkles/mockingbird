@@ -18,16 +18,13 @@ class NavbarLanding extends Component {
   render() {
     return (
       <div className={classes.flexContainerRow}>
-        <Link 
-          to="/"
-          exact 
-          className={classes.flexContainerRow}>
-            <img src={Logo} alt="mockingbird logo" className={classes.bird} />
-            <p className={classes.logoText}>Mockingbird</p>
+        <Link to="/" className={classes.flexContainerRow}>
+          <img src={Logo} alt="mockingbird logo" className={classes.bird} />
+          <p className={classes.logoText}>Mockingbird</p>
         </Link>
         <div className={classes.flexContainerRowRight}>
-          <Button name="Sign Up" link="/signup" buttonStyle={classes.link}/>
-          <Button name="Login" link="/login" buttonStyle={classes.link}/>
+          <Button name="Sign Up" link="/signup" buttonStyle={classes.link} />
+          <Button name="Login" link="/login" buttonStyle={classes.link} />
           <div className={classes.changeColorBtn} onClick={this.reverseColor}>
             <p>◐</p>
           </div>
