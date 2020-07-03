@@ -23,33 +23,32 @@ class NavbarUser extends Component {
     return (
       <div className={classes.mainFlexContainer}>
         <div className={classes.flexContainerRow}>
-         <Link 
-          to="/today"
-          exact 
-          className={classes.flexContainerRow}>
+          <Link to="/today" className={classes.flexContainerRow}>
             <img src={Logo} alt="mockingbird logo" className={classes.bird} />
             <p className={classes.logoText}>Mockingbird</p>
-        </Link>
+          </Link>
         </div>
         <div className={classes.flexContainerRow}>
-          <NavLink 
-            className={classes.navbarLink} 
-            to="/today" 
+          <NavLink
+            className={classes.navbarLink}
+            to="/today"
             activeStyle={{
-              backgroundColor: '#e7e7e7',
-              borderRadius: '5px',
-              borderBottom: '1px solid #aa82fe'
-            }}>
+              backgroundColor: "#e7e7e7",
+              borderRadius: "5px",
+              borderBottom: "1px solid #aa82fe",
+            }}
+          >
             <p>Today</p>
           </NavLink>
-          <NavLink 
-            className={classes.navbarLink} 
+          <NavLink
+            className={classes.navbarLink}
             to="/calendar"
             activeStyle={{
-              backgroundColor: '#e7e7e7',
-              borderRadius: '5px',
-              borderBottom: '1px solid #aa82fe'
-            }}>
+              backgroundColor: "#e7e7e7",
+              borderRadius: "5px",
+              borderBottom: "1px solid #aa82fe",
+            }}
+          >
             <p>Calendar</p>
           </NavLink>
           <div className={classes.dropdown}>

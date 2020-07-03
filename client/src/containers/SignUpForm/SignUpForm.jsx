@@ -1,132 +1,103 @@
-import React, { Component, Fragment } from "react";
-import axios from "axios";
-import Modal from "react-modal";
-import ClosingButton from "../../assets/closeButton.png";
+import React, { Fragment, useState } from "react";
+import { useForm } from "react-hook-form";
 import classes from "./SignUpForm.module.css";
-import Button from "../../components/Button/Button";
 
+const SignUpForm = () => {
+  const { register, handleSubmit, errors, watch } = useForm();
 
-class SignUpForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      email: "",
-      password: "",
-      repeatPassword: "",
-      showModal: false,
-      isSubmitted: false,
-    };
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-    this.renderModalContent = this.renderModalContent.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-  }
+  const onSubmit = (data) => {
+    console.log(data, data.email);
+  };
 
-  handleOpenModal() {
-    this.setState({ showModal: true });
-  }
-
-  handleCloseModal() {
-    this.setState({ showModal: false });
-  }
-
-  renderModalContent() { 
-    if (this.state.isSubmitted) {
-      return (
-        <div className={classes.submitModalContainer}>
-          <p>Congrats, you've got an email! Check your inbox.</p>
+  return (
+    <Fragment>
+      <div className={classes.mainContainer}>
+        <div className={classes.flexContainerRow}>
+          <div className={`${classes.dot} ${classes.yellow}`}></div>
+          <div className={`${classes.dot} ${classes.orange}`}></div>
+          <div className={`${classes.dot} ${classes.red}`}></div>
+          <div className={`${classes.dot} ${classes.green}`}></div>
+          <div className={`${classes.dot} ${classes.blue}`}></div>
+          <div className={`${classes.dot} ${classes.purple}`}></div>
         </div>
-      );
-    }
-    return <p>Oops something is wrong!</p>;
-  }
-
-  handleFormSubmit = () => {
-    this.setState({ isSubmitted: true });
-  };
-
-  handleInputChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  submitForm = () => {
-    this.handleOpenModal();
-  };
-
-  render() {
-    let currentModal = this.renderModalContent();
-    return (
-      <Fragment>
-        <div className={classes.mainContainer}>
-          <div className={classes.flexContainerRow}>
-            <div className={`${classes.dot} ${classes.yellow}`}></div>
-            <div className={`${classes.dot} ${classes.orange}`}></div>
-            <div className={`${classes.dot} ${classes.red}`}></div>
-            <div className={`${classes.dot} ${classes.green}`}></div>
-            <div className={`${classes.dot} ${classes.blue}`}></div>
-            <div className={`${classes.dot} ${classes.purple}`}></div>
-          </div>
-          <div className={classes.headingContainer}>
-            <p className={classes.heading}>Sign Up</p>
-          </div>
-          <form onSubmit={this.submitForm}>
-            <div
-              className={classes.formGroupContainer}
-            >
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                onChange={this.handleInputChange}
-              ></input>
-            </div>
+        <div className={classes.headingContainer}>
+          <p className={classes.heading}>Sign Up</p>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div
+            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
+          >
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              ref={register({ required: true })}
+            ></input>
             <div className={classes.subTextContainer}>
               <p className={classes.subText}>
                 Note: You will need to verify this. Make it real.
               </p>
             </div>
-            <div
-              className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-            >
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                onChange={this.handleInputChange}
-              ></input>
-            </div>
-            <div
-              className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-            >
-              <label htmlFor="repeat-password">Repeat Password:</label>
-              <input
-                type="password"
-                name="repeatPassword"
-                id="repeat-password"
-                onChange={this.handleInputChange}
-              ></input>
-            </div>
-            <div className={classes.btnWrapper}>
-              <Button link="/login" name="٩(◕‿◕｡)۶ Sign Me Up" buttonStyle={classes.link} />
-            </div>
-          </form>
-        </div>
-        <Modal
-          isOpen={this.state.showModal}
-          onRequestClose={this.handleCloseModal}
-          className={classes.modal}
-          overlayClassName={classes.overlay}
-          ariaHideApp={false}
-        >
-          {currentModal}
-        </Modal>
-      </Fragment>
-    );
-  }
-}
+            {errors.email && (
+              <span className={classes.error}>Email is required.</span>
+            )}
+          </div>
+          <div className={classes.formGroupContainer}>
+            <label>Password:</label>
+            <input
+              type="password"
+              name="password"
+              ref={register({ required: true, minLength: 8 })}
+            ></input>
+            {errors.password && errors.password.type === "required" && (
+              <span className={classes.error}>Password field is required.</span>
+            )}
+            {errors.password && errors.password.type === "minLength" && (
+              <span className={classes.error}>
+                The password has to be at least 8 characters long.
+              </span>
+            )}
+          </div>
+          <div className={classes.formGroupContainer}>
+            <label>Repeat Password:</label>
+            <input
+              type="password"
+              name="repeatPassword"
+              ref={register({
+                required: true,
+                minLength: 8,
+                validate: (value) => value === watch("password"),
+              })}
+            ></input>
+            {errors.repeatPassword &&
+              errors.repeatPassword.type === "required" && (
+                <span className={classes.error}>
+                  Repeat password field is required.
+                </span>
+              )}
+            {errors.repeatPassword &&
+              errors.repeatPassword.type === "minLength" && (
+                <span className={classes.error}>
+                  The password has to be at least 8 characters long.
+                </span>
+              )}
+            {errors.repeatPassword &&
+              errors.repeatPassword.type === "validate" && (
+                <span className={classes.error}>The passwords must match.</span>
+              )}
+          </div>
+
+          <div className={classes.btnWrapper}>
+            <input
+              type="submit"
+              className={classes.link}
+              value="٩(◕‿◕｡)۶ Sign Me Up"
+            ></input>
+          </div>
+        </form>
+      </div>
+    </Fragment>
+  );
+};
 
 export default SignUpForm;

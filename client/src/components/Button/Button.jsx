@@ -8,7 +8,7 @@ const Button = (props) => {
         to={props.link}
         exact
         activeStyle={{
-          backgroundColor: `#ffd100`
+          backgroundColor: `#ffd100`,
         }}
         className={props.buttonStyle}
       >
