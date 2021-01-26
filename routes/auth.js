@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const verifyToken = require("../middleware/verifyToken");
+const authController = require("../controllers/auth");
 
 // @route  POST /signup
 // @desc   Register User
