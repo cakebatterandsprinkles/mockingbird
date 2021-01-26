@@ -23,6 +23,7 @@ mongoose.connect(
       password: MONGODB_PASS,
     },
     useNewUrlParser: true,
+    useUnifiedTopology: true,
   },
   function (error) {
     console.log(error);
