@@ -5,13 +5,7 @@ const generateToken = require("../util/generateToken");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const validationSignUp = (name, email, password, repeatPassword) => {
-  if (name.length < 2) {
-    return "Username must be at least 2 characters long.";
-  }
-  if (name.length > 25) {
-    return "Username must be shorter than 25 characters.";
-  }
+const validationSignUp = (email, password, repeatPassword) => {
   if (!email.includes("@")) {
     return "Please enter a valid e-mail address";
   }
@@ -48,14 +42,9 @@ const generateRandomString = (length) => {
 };
 
 exports.postSignup = (req, res, next) => {
-  const { name, email, password, repeatPassword } = req.body;
+  const { email, password, repeatPassword } = req.body;
 
-  const validationResult = validationSignUp(
-    name,
-    email,
-    password,
-    repeatPassword
-  );
+  const validationResult = validationSignUp(email, password, repeatPassword);
 
   if (validationResult !== "Success") {
     return res.status(400).send(validationResult);
@@ -76,7 +65,6 @@ exports.postSignup = (req, res, next) => {
           .hash(password, salt)
           .then((hashedPassword) => {
             const user = new User({
-              name: name,
               email: email,
               password: hashedPassword,
               confirmToken: confirmToken,
@@ -88,12 +76,11 @@ exports.postSignup = (req, res, next) => {
 
             sgMail
               .send({
-                from: "hello@mockingbird.app",
+                from: "mockingbird@yagmurcetintas.com",
                 personalizations: [
                   {
-                    to: { name: name, email: email },
+                    to: { email: email },
                     dynamicTemplateData: {
-                      name: name,
                       linkURL: confirmationLinkURL,
                     },
                   },

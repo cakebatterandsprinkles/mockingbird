@@ -1,12 +1,36 @@
-import React, { Fragment, useState } from "react";
+import axios from "axios";
+import React, { Fragment } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router";
+import { toast } from "react-toastify";
 import classes from "./SignUpForm.module.css";
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
+  const history = useHistory();
   const { register, handleSubmit, errors, watch } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data, data.email);
+  const onSubmit = (data, e) => {
+    axios
+      .post("/signup", {
+        email: data.email,
+        password: data.password,
+        repeatPassword: data.repeatPassword,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          e.target.reset();
+          setTimeout(() => {
+            history.push({
+              pathname: "/login",
+            });
+          }, 1000);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data);
+        }
+      });
   };
 
   return (
@@ -86,7 +110,6 @@ const SignUpForm = () => {
                 <span className={classes.error}>The passwords must match.</span>
               )}
           </div>
-
           <div className={classes.btnWrapper}>
             <input
               type="submit"
