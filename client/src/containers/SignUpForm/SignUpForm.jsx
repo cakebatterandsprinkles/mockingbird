@@ -19,11 +19,12 @@ const SignUpForm = (props) => {
       .then((response) => {
         if (response.status === 200) {
           e.target.reset();
-          setTimeout(() => {
-            history.push({
-              pathname: "/login",
-            });
-          }, 1000);
+          history.push({
+            pathname: "/login",
+          });
+          toast.warn(
+            "You need to confirm your email before you login. Check your inbox."
+          );
         }
       })
       .catch((error) => {
