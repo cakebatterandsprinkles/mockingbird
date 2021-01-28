@@ -85,7 +85,7 @@ exports.postSignup = (req, res, next) => {
                     },
                   },
                 ],
-                templateId: "d-2d52e14ab65346dbb3350807a5ff9e42",
+                templateId: "d-91eed88622a64a27970248ff2777fc26",
               })
               .then(
                 () => {},
@@ -133,21 +133,20 @@ exports.postRequestReset = (req, res, next) => {
     userInfo
       .save()
       .then(() => {
-        const resetLinkURL = `https://mendokusai.app/reset-password?email=${email}&token=${resetToken}`;
+        const resetLinkURL = `https://mockingbird.app/reset-password?email=${email}&token=${resetToken}`;
 
         sgMail
           .send({
-            from: "hello@mendokusai.app",
+            from: "mockingbird@yagmurcetintas.com",
             personalizations: [
               {
-                to: { name: userInfo.name, email: email },
+                to: { email: email },
                 dynamicTemplateData: {
-                  name: userInfo.name,
                   linkURL: resetLinkURL,
                 },
               },
             ],
-            templateId: "d-264ac76ff5ab4a20acc38d0d078c4ff6",
+            templateId: "d-dd01d0c5f77c4efda65a0c8d26edd4e9 ",
           })
           .then(
             () => {},
