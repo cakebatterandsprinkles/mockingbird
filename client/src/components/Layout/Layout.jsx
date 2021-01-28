@@ -1,7 +1,6 @@
-import React, {Fragment} from "react";
-import NavbarUser from "../NavbarUser/NavbarUser";
+import React, { Fragment } from "react";
 import NavbarLanding from "../NavbarLanding/NavbarLanding";
-import classes from "./Layout.module.css";
+import NavbarUser from "../NavbarUser/NavbarUser";
 
 const layout = (props) => {
   return (
