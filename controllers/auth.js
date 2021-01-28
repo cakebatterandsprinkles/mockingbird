@@ -72,7 +72,9 @@ exports.postSignup = (req, res, next) => {
             return user.save();
           })
           .then(() => {
-            const confirmationLinkURL = `https://mockingbird.app/confirm-email?email=${email}&token=${confirmToken}`;
+            const confirmationLinkURL = `http://localhost:3000/confirm?email=${encodeURIComponent(
+              email
+            )}&token=${confirmToken}`;
 
             sgMail
               .send({
@@ -133,7 +135,9 @@ exports.postRequestReset = (req, res, next) => {
     userInfo
       .save()
       .then(() => {
-        const resetLinkURL = `https://mockingbird.app/reset-password?email=${email}&token=${resetToken}`;
+        const resetLinkURL = `http://localhost:3000/reset-password?email=${encodeURIComponent(
+          email
+        )}&token=${resetToken}`;
 
         sgMail
           .send({
