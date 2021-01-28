@@ -15,6 +15,12 @@ router.post("/signup", authController.postSignup);
 
 router.post("/login", authController.postLogin);
 
+// @route  POST /confirm
+// @desc   Confirm user email
+// @access private
+
+router.post("/confirm", authController.postConfirm);
+
 // @route  POST /logout
 // @desc   Logout User
 // @access private
