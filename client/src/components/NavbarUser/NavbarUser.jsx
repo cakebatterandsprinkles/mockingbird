@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
-import classes from "./NavbarUser.module.css";
-import SettingsIcon from "../../assets/settingsicon.png";
 import Logo from "../../assets/mockingbird-logo.png";
+import SettingsIcon from "../../assets/settingsicon.png";
+import classes from "./NavbarUser.module.css";
 
 class NavbarUser extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   reverseColor = () => {
     const page = document.body;
     const hc = document.querySelectorAll(".headingContainer");

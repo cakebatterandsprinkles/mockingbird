@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Circle from "../../assets/circle.png";
-import Star from "../../assets/star.png";
-import Triangle from "../../assets/triangle.png";
-import Rectangle from "../../assets/rectangle.png";
 import Pentagon from "../../assets/pentagon.png";
 import Plus from "../../assets/plus.png";
+import Rectangle from "../../assets/rectangle.png";
+import Star from "../../assets/star.png";
+import Triangle from "../../assets/triangle.png";
+import Button from "../../components/Button/Button";
 import UserForm from "../../components/UserForm/UserForm";
 import UserTextArea from "../../components/UserTextArea/UserTextArea";
-import Button from "../../components/Button/Button";
 import quotes from "../../data/quotes.json";
 import classes from "./UserMainPage.module.css";
 

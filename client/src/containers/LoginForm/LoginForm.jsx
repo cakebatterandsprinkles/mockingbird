@@ -24,7 +24,7 @@ const LoginForm = (props) => {
       .then((response) => {
         if (response.status === 200) {
           setUserData({ id: data.id, email: data.email });
-          history.push({ pathname: "/user" });
+          history.push({ pathname: "/today" });
         }
       })
       .catch((error) => {

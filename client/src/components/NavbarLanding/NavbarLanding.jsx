@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import classes from "./NavbarLanding.module.css";
 import Logo from "../../assets/mockingbird-logo.png";
 import Button from "../Button/Button";
+import classes from "./NavbarLanding.module.css";
 
 class NavbarLanding extends Component {
   reverseColor = () => {
