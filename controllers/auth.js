@@ -1,45 +1,13 @@
 const bcrypt = require("bcryptjs");
 const sgMail = require("@sendgrid/mail");
 const User = require("../models/User");
-const generateToken = require("../util/generateToken");
+const {
+  generateTokenAndSetCookie,
+  generateRandomString,
+} = require("../util/generateToken");
+const { validationSignUp, validationLogin } = require("../util/validation");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-const validationSignUp = (email, password, repeatPassword) => {
-  if (!email.includes("@")) {
-    return "Please enter a valid e-mail address";
-  }
-  if (password.length < 8) {
-    return "Please enter a password with 8 or more characters";
-  }
-  if (password !== repeatPassword) {
-    return "Entered passwords should match!";
-  }
-
-  return "Success";
-};
-
-const validationLogin = (email, password) => {
-  if (!email.includes("@")) {
-    return "Please enter a valid e-mail address";
-  }
-  if (password.length < 8) {
-    return "Please enter a password with 8 or more characters";
-  }
-  return "Success";
-};
-
-const generateRandomString = (length) => {
-  var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split(
-    ""
-  );
-  var result = [];
-  for (var i = 0; i < length; i++) {
-    var j = (Math.random() * (alphabet.length - 1)).toFixed(0);
-    result.push(alphabet[j]);
-  }
-  return result.join("");
-};
 
 exports.postSignup = (req, res, next) => {
   const { email, password, repeatPassword } = req.body;
@@ -202,7 +170,7 @@ exports.postLogin = (req, res, next) => {
           return res.status(400).send("Wrong password.");
         }
 
-        generateToken(res, userInfo.id, userInfo.name);
+        generateTokenAndSetCookie(res, userInfo.id, userInfo.name);
         res.json({ id: userInfo.id, name: userInfo.name });
       });
     });
