@@ -349,6 +349,6 @@ exports.getMe = (req, res, next) => {
     if (!user) {
       return res.status(401).end();
     }
-    res.json(user.name);
+    res.json(user);
   });
 };

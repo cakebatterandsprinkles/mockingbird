@@ -33,4 +33,10 @@ router.post("/logout", verifyToken, authController.postLogout);
 
 router.post("/settings", verifyToken, authController.postSettings);
 
+// @route  GET /me
+// @desc   Get current user
+// @access private
+
+router.get("/me", verifyToken, authController.getMe);
+
 module.exports = router;
