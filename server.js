@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth");
+const entryRoutes = require("./routes/entry");
 
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -48,6 +49,7 @@ app.use(cors({ credentials: true }));
 
 // routes
 app.use(authRoutes);
+app.use(entryRoutes);
 
 // serve static files
 if (process.env.NODE_ENV === "production") {
