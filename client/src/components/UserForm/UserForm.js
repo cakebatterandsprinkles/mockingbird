@@ -10,6 +10,7 @@ const UserForm = (props) => {
         name={props.name}
         id={props.name}
         onChange={props.onInputChange}
+        value={props.value}
       ></input>
     </div>
   );

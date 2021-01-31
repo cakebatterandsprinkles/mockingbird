@@ -119,12 +119,20 @@
 }
 
 .saturday {
-  background: linear-gradient(to right, var(--yellow), var(--orange)) !important;
+  background: linear-gradient(
+    to right,
+    var(--yellow),
+    var(--orange)
+  ) !important;
   color: var(--offwhite);
 }
 
 .sunday {
-  background: linear-gradient(to right,var(--orange), var(--purple)) !important;
+  background: linear-gradient(
+    to right,
+    var(--orange),
+    var(--purple)
+  ) !important;
   color: var(--offwhite);
   border-top-right-radius: 9px;
 }
@@ -132,7 +140,7 @@
 .arrow {
   font-size: 1rem;
   cursor: pointer;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .arrow:hover {
@@ -176,7 +184,7 @@
   width: 90%;
   font-weight: 600;
   margin: 0 1rem;
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: var(--black) !important;
 }
 
@@ -186,7 +194,7 @@
   cursor: pointer;
 }
 
-.progressIcons {
+.entryIcons {
   height: 0.8rem;
   width: auto;
 }
@@ -265,7 +273,7 @@
     margin-bottom: 0.3rem;
   }
 
-  .progressIcons {
+  .entryIcons {
     height: 0.65rem;
     width: auto;
   }

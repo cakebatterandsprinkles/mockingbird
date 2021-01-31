@@ -1,73 +1,115 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import Circle from "../../assets/circle.png";
 import Pentagon from "../../assets/pentagon.png";
 import Plus from "../../assets/plus.png";
 import Rectangle from "../../assets/rectangle.png";
 import Star from "../../assets/star.png";
 import Triangle from "../../assets/triangle.png";
-import Button from "../../components/Button/Button";
 import UserForm from "../../components/UserForm/UserForm";
 import UserTextArea from "../../components/UserTextArea/UserTextArea";
 import quotes from "../../data/quotes.json";
+import { setDate } from "../../util/date";
 import classes from "./UserMainPage.module.css";
 
-class UserMainPage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isBigScreen: true,
-      isSmallScreen: false,
-      footerText: "",
-      author: "",
-    };
-    this.handleWindowResize = this.handleWindowResize.bind(this);
-    this.handleFirstTextarea = this.handleFirstTextarea.bind(this);
-  }
+const UserMainPage = () => {
+  const [currentDate, setCurrentDate] = useState("");
+  const [footerText, setFooterText] = useState("");
+  const [author, setAuthor] = useState("");
+  const [isBigScreen, setIsBigScreen] = useState(true);
+  const [formData, setFormData] = useState({ say1: "", say2: "", say3: "" });
+  let history = useHistory();
 
-  handleWindowResize() {
+  const handleInputChange = (e) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleWindowResize = () => {
     window.addEventListener("resize", (e) => {
-      if (e.srcElement.outerWidth >= 1200) {
-        this.setState({ isBigScreen: true });
-      } else if (
-        e.srcElement.outerWidth < 1200 &&
-        e.srcElement.outerWidth > 600
-      ) {
-        this.setState({ isBigScreen: false });
+      if (e.target.outerWidth >= 1200) {
+        setIsBigScreen(true);
       } else {
-        this.setState({ isSmallScreen: true });
+        setIsBigScreen(false);
       }
     });
-  }
+  };
 
-  handleFirstTextarea() {
+  const handleFirstTextarea = () => {
     if (window.outerWidth >= 1200) {
-      this.setState({ isBigScreen: true });
-    } else if (window.outerWidth < 1200 && window.outerWidth > 600) {
-      this.setState({ isBigScreen: false });
+      setIsBigScreen(true);
     } else {
-      this.setState({ isSmallScreen: true });
+      setIsBigScreen(false);
     }
-  }
+  };
 
-  selectFooterText(array) {
+  const selectFooterText = (array) => {
     const randomNum = Math.floor(Math.random() * array.length);
-    this.setState({
-      footerText: array[randomNum].quote,
-      author: array[randomNum].author,
-    });
-    console.log(randomNum, array[randomNum]);
-  }
+    setFooterText(array[randomNum].quote);
+    setAuthor(array[randomNum].author);
+  };
 
-  componentDidMount() {
-    this.handleWindowResize();
-    this.handleFirstTextarea();
-    this.selectFooterText(quotes);
-  }
+  const addEntry = (entry, date) => {
+    fetch("/today", {
+      method: "POST",
+      body: JSON.stringify({ entry: entry, date: date }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((blob) => blob.json())
+      .then((response) => {
+        console.log(response);
+      });
+  };
 
-  render() {
-    return (
-      <div className={classes.mainContainer}>
-        <div className={classes.mainWrapper}>
+  const getEntries = () => {
+    const today = new Date();
+    const todayString = `${today.getFullYear()}-${(today.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
+
+    fetch(`/today?date=${todayString}`, { credentials: "include" })
+      .then((blob) => blob.json())
+      .then((response) => {
+        setFormData({
+          say1: response.heard[0],
+          say2: response.heard[1],
+          say3: response.heard[2],
+        });
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    toast.success("You have successfully saved your new journal entry!");
+    const today = new Date();
+    const todayString = `${today.getFullYear()}-${(today.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
+
+    const entry = { heard: [formData.say1, formData.say2, formData.say3] };
+    addEntry(entry, todayString);
+    setTimeout(() => history.push("/calendar"), 2000);
+  };
+
+  useEffect(() => {
+    const date = setDate();
+    setCurrentDate(date);
+    getEntries();
+    handleWindowResize();
+    handleFirstTextarea();
+    selectFooterText(quotes);
+  }, []);
+
+  return (
+    <div className={classes.mainContainer}>
+      <div className={classes.mainWrapper}>
+        <form onSubmit={handleSubmit}>
           <div className={classes.flexContainerRow}>
             <div className={classes.box} id={classes.yellow}>
               <div className={classes.sectionContainer}>
@@ -87,17 +129,20 @@ class UserMainPage extends Component {
                 <UserForm
                   name="say1"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
+                  value={formData.say1}
                 />
                 <UserForm
                   name="say2"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
+                  value={formData.say2}
                 />{" "}
                 <UserForm
                   name="say3"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
+                  value={formData.say3}
                 />
               </div>
             </div>
@@ -116,17 +161,17 @@ class UserMainPage extends Component {
                 <UserForm
                   name="seen1"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
                 />
                 <UserForm
                   name="seen2"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
                 />{" "}
                 <UserForm
                   name="seen3"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
                 />
               </div>
             </div>
@@ -143,17 +188,17 @@ class UserMainPage extends Component {
                 <UserForm
                   name="thought1"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
                 />
                 <UserForm
                   name="thought2"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
                 />{" "}
                 <UserForm
                   name="thought3"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
                 />
               </div>
             </div>
@@ -174,17 +219,17 @@ class UserMainPage extends Component {
                 <UserForm
                   name="word1"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
                 />
                 <UserForm
                   name="word2"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
                 />{" "}
                 <UserForm
                   name="word  3"
                   content="☁ "
-                  onInputChange={this.handleInputChange}
+                  onInputChange={handleInputChange}
                 />
               </div>
             </div>
@@ -202,9 +247,9 @@ class UserMainPage extends Component {
                 </div>
                 <UserTextArea
                   name="word  3"
-                  onInputChange={this.handleInputChange}
-                  rows={this.state.isSmallScreen ? 6 : 8}
-                  cols={this.state.isBigScreen ? 50 : 170}
+                  onInputChange={handleInputChange}
+                  rows={isBigScreen ? 8 : 6}
+                  cols={isBigScreen ? 50 : 170}
                   style={classes.textarea}
                   content=""
                 />
@@ -220,9 +265,9 @@ class UserMainPage extends Component {
                 </div>
                 <UserTextArea
                   name="word  3"
-                  onInputChange={this.handleInputChange}
-                  rows={this.state.isSmallScreen ? 6 : 8}
-                  cols={this.state.isBigScreen ? 50 : 170}
+                  onInputChange={handleInputChange}
+                  rows={isBigScreen ? 8 : 6}
+                  cols={isBigScreen ? 50 : 170}
                   style={classes.textarea}
                   content=""
                 />
@@ -233,27 +278,20 @@ class UserMainPage extends Component {
             <p className={classes.warningText}>
               ʕ•́ᴥ•̀ʔっ Don't forget to save!{" "}
             </p>
-            <Button
-              link="/calendar"
-              name="(≧◡≦) Save"
-              buttonStyle={classes.link}
-            />
+            <button className={classes.link}>(≧◡≦) Save</button>
           </div>
-        </div>
-        <div className={classes.footer}>
-          <div className={classes.footerText}>
-            <p>
-              {this.state.footerText}
-              <span className={classes.footerAuthor}>
-                {" "}
-                - {this.state.author}
-              </span>
-            </p>
-          </div>
+        </form>
+      </div>
+      <div className={classes.footer}>
+        <div className={classes.footerText}>
+          <p>
+            {footerText}
+            <span className={classes.footerAuthor}> - {author}</span>
+          </p>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default UserMainPage;

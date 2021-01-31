@@ -1,20 +1,20 @@
 import React, { Component, Fragment } from "react";
-import LegendFooter from "../../components/LegendFooter/LegendFooter";
-import classes from "./Calendar.module.css";
-import Drawer from "../Drawer/Drawer";
-import CloseButton from "../../assets/closeButton.png";
 import Circle from "../../assets/circle.png";
-import Star from "../../assets/star.png";
-import Triangle from "../../assets/triangle.png";
-import Rectangle from "../../assets/rectangle.png";
+import CloseButton from "../../assets/closeButton.png";
 import Pentagon from "../../assets/pentagon.png";
 import Plus from "../../assets/plus.png";
+import Rectangle from "../../assets/rectangle.png";
+import Star from "../../assets/star.png";
+import Triangle from "../../assets/triangle.png";
+import LegendFooter from "../../components/LegendFooter/LegendFooter";
 import {
-  getMonthName,
   getDaysInMonth,
   getFirstDayOfMonth,
+  getMonthName,
   setCurrentDay,
 } from "../../util/date";
+import Drawer from "../Drawer/Drawer";
+import classes from "./Calendar.module.css";
 
 class Calendar extends Component {
   constructor() {
@@ -99,6 +99,10 @@ class Calendar extends Component {
     );
   }
 
+  setStateCurrentDay = (date) => {
+    this.setState({ currentDay: setCurrentDay(date) });
+  };
+
   renderDays() {
     const daysInCurrentMonth = getDaysInMonth(
       this.state.month,
@@ -140,6 +144,29 @@ class Calendar extends Component {
       </Fragment>
     );
   }
+
+  showEntriesOnCalendar = (entryArr, date) => {
+    const entries = entryArr.filter((entry) => {
+      return entry.date.substring(8, 10) === date.toString().padStart(2, "0");
+    });
+    // here, return the symnbols that exist for that day's entries
+    const entryTitleArr = [];
+    // entries.forEach((entry) => {
+    //   for (key of entry) {
+    //     if (key) {
+    //       entryTitleArr.push(key)
+    //     }
+    //   }
+    // });
+
+    return (
+      <div className={classes.entryIconsWrapper}>
+        {entryTitleArr.includes("heard") ? (
+          <img src={Circle} alt="circle icon" className={classes.entryIcons} />
+        ) : null}
+      </div>
+    );
+  };
 
   render() {
     return (
@@ -183,15 +210,26 @@ class Calendar extends Component {
               <div className={classes.heading}>{this.state.date}</div>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Circle} alt="circle icon" className={classes.icon}/>
+                  <img
+                    src={Circle}
+                    alt="circle icon"
+                    className={classes.icon}
+                  />
                   <div className={classes.headerContainer}>
-                    <p>3 of the interesting / weird things you heard somebody say:</p>
+                    <p>
+                      3 of the interesting / weird things you heard somebody
+                      say:
+                    </p>
                   </div>
                 </div>
               </div>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Triangle} alt="triangle icon" className={classes.icon}/>
+                  <img
+                    src={Triangle}
+                    alt="triangle icon"
+                    className={classes.icon}
+                  />
                   <div className={classes.headerContainer}>
                     <p>3 of the interesting / weird things you saw:</p>
                   </div>
@@ -199,15 +237,21 @@ class Calendar extends Component {
               </div>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Star} alt="star icon" className={classes.icon}/>
+                  <img src={Star} alt="star icon" className={classes.icon} />
                   <div className={classes.headerContainer}>
-                    <p>3 of the interesting / weird things you thought about:</p>
+                    <p>
+                      3 of the interesting / weird things you thought about:
+                    </p>
                   </div>
                 </div>
               </div>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Rectangle} alt="rectangle icon" className={classes.icon}/>
+                  <img
+                    src={Rectangle}
+                    alt="rectangle icon"
+                    className={classes.icon}
+                  />
                   <div className={classes.headerContainer}>
                     <p>3 words to describe today:</p>
                   </div>
@@ -215,7 +259,11 @@ class Calendar extends Component {
               </div>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Pentagon} alt="pentagon icon" className={classes.icon}/>
+                  <img
+                    src={Pentagon}
+                    alt="pentagon icon"
+                    className={classes.icon}
+                  />
                   <div className={classes.headerContainer}>
                     <p>1 new thing you learned or tried for the first time:</p>
                   </div>
@@ -223,7 +271,7 @@ class Calendar extends Component {
               </div>
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
-                  <img src={Plus} alt="plus icon" className={classes.icon}/>
+                  <img src={Plus} alt="plus icon" className={classes.icon} />
                   <div className={classes.headerContainer}>
                     <p>1 thing you want to add:</p>
                   </div>

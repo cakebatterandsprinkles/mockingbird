@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../../assets/mockingbird-logo.png";
 import SettingsIcon from "../../assets/settingsicon.png";
+import UserContext from "../../context/authContext.js";
 import classes from "./NavbarUser.module.css";
 
 class NavbarUser extends Component {
@@ -72,16 +73,22 @@ class NavbarUser extends Component {
                 <p>Change Mode</p>
               </div>
               <div className={classes.linkContainerBottom}>
-                <Link
-                  to="/login"
-                  style={{
-                    textDecoration: "none",
-                    color: "black",
-                  }}
-                  onClick={this.logout}
-                >
-                  Logout
-                </Link>
+                <UserContext.Consumer>
+                  {(context) => (
+                    <Link
+                      to="/login"
+                      style={{
+                        textDecoration: "none",
+                        color: "black",
+                      }}
+                      onClick={() => {
+                        context.setUserData(null);
+                      }}
+                    >
+                      Logout
+                    </Link>
+                  )}
+                </UserContext.Consumer>
               </div>
             </div>
           </div>

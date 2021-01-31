@@ -2,20 +2,17 @@ const Entry = require("../models/JournalEntry.js");
 
 exports.postToday = (req, res, next) => {
   const { entry, date } = req.body;
-  const newEntry = {};
-  newEntry.user = req.user.id;
-  if (entry) newEntry.entry = entry;
-  if (date) newEntry.date = date;
+  const newEntry = { ...entry, date, user: req.user.id };
 
-  Entry.findOne({
-    user: req.user.id,
-    date: req.body.date,
-  })
+  Entry.findOneAndUpdate(
+    {
+      user: req.user.id,
+      date: req.body.date,
+    },
+    newEntry
+  )
     .then((entry) => {
-      entry = new Entry(newEntry);
-      entry.save().then((entry) => {
-        res.json(entry);
-      });
+      res.json(entry);
     })
     .catch((err) => {
       res.status(500).send(err.toString());
@@ -23,11 +20,11 @@ exports.postToday = (req, res, next) => {
 };
 
 exports.getToday = (req, res, next) => {
-  Entry.find({
+  Entry.findOne({
     user: req.user.id,
     date: req.query.date,
   })
-    .then((entries) => res.json(entries))
+    .then((entry) => res.json(entry))
     .catch((err) => res.status(500).send(err));
 };
 
