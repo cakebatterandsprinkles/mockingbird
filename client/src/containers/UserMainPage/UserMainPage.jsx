@@ -18,14 +18,32 @@ const UserMainPage = () => {
   const [footerText, setFooterText] = useState("");
   const [author, setAuthor] = useState("");
   const [isBigScreen, setIsBigScreen] = useState(true);
-  const [formData, setFormData] = useState({ say1: "", say2: "", say3: "" });
+  const [formData, setFormData] = useState(
+    new Map([
+      ["heard1", ""],
+      ["heard2", ""],
+      ["heard3", ""],
+      ["saw1", ""],
+      ["saw2", ""],
+      ["saw3", ""],
+      ["thought1", ""],
+      ["thought2", ""],
+      ["thought3", ""],
+      ["words1", ""],
+      ["words2", ""],
+      ["words3", ""],
+      ["newExperience", ""],
+      ["extra", ""],
+    ])
+  );
+
   let history = useHistory();
 
   const handleInputChange = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [e.target.name]: e.target.value,
-    }));
+    setFormData(
+      (prevFormData) =>
+        new Map([...prevFormData.entries(), [e.target.name, e.target.value]])
+    );
   };
 
   const handleWindowResize = () => {
@@ -64,6 +82,7 @@ const UserMainPage = () => {
       .then((blob) => blob.json())
       .then((response) => {
         console.log(response);
+        setTimeout(() => history.push("/calendar"), 2000);
       });
   };
 
@@ -76,11 +95,27 @@ const UserMainPage = () => {
     fetch(`/today?date=${todayString}`, { credentials: "include" })
       .then((blob) => blob.json())
       .then((response) => {
-        setFormData({
-          say1: response.heard[0],
-          say2: response.heard[1],
-          say3: response.heard[2],
-        });
+        if (response) {
+          setFormData(
+            new Map(
+              Object.entries(response)
+                .filter(
+                  ([key, value]) =>
+                    key !== "date" &&
+                    (typeof value === "string" || Array.isArray(value))
+                )
+                .flatMap(([key, value]) => {
+                  if (typeof value === "string") return [[key, value]];
+                  else if (Array.isArray(value)) {
+                    return value.map((item, index) => [
+                      key + (index + 1),
+                      item,
+                    ]);
+                  } else throw new Error("Unexpected value");
+                })
+            )
+          );
+        }
       });
   };
 
@@ -92,9 +127,27 @@ const UserMainPage = () => {
       .toString()
       .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
 
-    const entry = { heard: [formData.say1, formData.say2, formData.say3] };
+    const entry = {
+      heard: [
+        formData.get("heard1"),
+        formData.get("heard2"),
+        formData.get("heard3"),
+      ],
+      saw: [formData.get("saw1"), formData.get("saw2"), formData.get("saw3")],
+      thought: [
+        formData.get("thought1"),
+        formData.get("thought2"),
+        formData.get("thought3"),
+      ],
+      words: [
+        formData.get("words1"),
+        formData.get("words2"),
+        formData.get("words3"),
+      ],
+      extra: formData.get("extra"),
+      newExperience: formData.get("newExperience"),
+    };
     addEntry(entry, todayString);
-    setTimeout(() => history.push("/calendar"), 2000);
   };
 
   useEffect(() => {
@@ -111,7 +164,8 @@ const UserMainPage = () => {
       <div className={classes.mainWrapper}>
         <form onSubmit={handleSubmit}>
           <div className={classes.flexContainerRow}>
-            <div className={classes.box} id={classes.yellow}>
+            <div className={classes.box}>
+              <div id={classes.yellow} className={classes.cardBackground} />
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
                   <img
@@ -126,27 +180,30 @@ const UserMainPage = () => {
                     </p>
                   </div>
                 </div>
-                <UserForm
-                  name="say1"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                  value={formData.say1}
-                />
-                <UserForm
-                  name="say2"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                  value={formData.say2}
-                />{" "}
-                <UserForm
-                  name="say3"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                  value={formData.say3}
-                />
+                <div>
+                  <UserForm
+                    name="heard1"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("heard1")}
+                  />
+                  <UserForm
+                    name="heard2"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("heard2")}
+                  />{" "}
+                  <UserForm
+                    name="heard3"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("heard3")}
+                  />
+                </div>
               </div>
             </div>
-            <div className={classes.box} id={classes.orange}>
+            <div className={classes.box}>
+              <div id={classes.orange} className={classes.cardBackground} />
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
                   <img
@@ -158,24 +215,30 @@ const UserMainPage = () => {
                     <p>3 of the interesting / weird things you saw:</p>
                   </div>
                 </div>
-                <UserForm
-                  name="seen1"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                />
-                <UserForm
-                  name="seen2"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                />{" "}
-                <UserForm
-                  name="seen3"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                />
+                <div>
+                  <UserForm
+                    name="saw1"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("saw1")}
+                  />
+                  <UserForm
+                    name="saw2"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("saw2")}
+                  />{" "}
+                  <UserForm
+                    name="saw3"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("saw3")}
+                  />
+                </div>
               </div>
             </div>
-            <div className={classes.box} id={classes.red}>
+            <div className={classes.box}>
+              <div id={classes.red} className={classes.cardBackground} />
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
                   <img src={Star} alt="star icon" className={classes.icon} />
@@ -185,26 +248,32 @@ const UserMainPage = () => {
                     </p>
                   </div>
                 </div>
-                <UserForm
-                  name="thought1"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                />
-                <UserForm
-                  name="thought2"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                />{" "}
-                <UserForm
-                  name="thought3"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                />
+                <div>
+                  <UserForm
+                    name="thought1"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("thought1")}
+                  />
+                  <UserForm
+                    name="thought2"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("thought2")}
+                  />{" "}
+                  <UserForm
+                    name="thought3"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("thought3")}
+                  />
+                </div>
               </div>
             </div>
           </div>
           <div className={classes.flexContainerRow}>
-            <div className={classes.box} id={classes.darkgreen}>
+            <div className={classes.box}>
+              <div id={classes.darkgreen} className={classes.cardBackground} />
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
                   <img
@@ -216,24 +285,30 @@ const UserMainPage = () => {
                     <p>3 words to describe today:</p>
                   </div>
                 </div>
-                <UserForm
-                  name="word1"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                />
-                <UserForm
-                  name="word2"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                />{" "}
-                <UserForm
-                  name="word  3"
-                  content="☁ "
-                  onInputChange={handleInputChange}
-                />
+                <div>
+                  <UserForm
+                    name="words1"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("words1")}
+                  />
+                  <UserForm
+                    name="words2"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("words2")}
+                  />{" "}
+                  <UserForm
+                    name="words3"
+                    content="☁ "
+                    onInputChange={handleInputChange}
+                    value={formData.get("words3")}
+                  />
+                </div>
               </div>
             </div>
-            <div className={classes.box} id={classes.blue}>
+            <div className={classes.box}>
+              <div id={classes.blue} className={classes.cardBackground} />
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
                   <img
@@ -246,16 +321,18 @@ const UserMainPage = () => {
                   </div>
                 </div>
                 <UserTextArea
-                  name="word  3"
+                  name="newExperience"
                   onInputChange={handleInputChange}
-                  rows={isBigScreen ? 8 : 6}
+                  rows={isBigScreen ? 6 : 4}
                   cols={isBigScreen ? 50 : 170}
                   style={classes.textarea}
                   content=""
+                  value={formData.get("newExperience")}
                 />
               </div>
             </div>
-            <div className={classes.box} id={classes.purple}>
+            <div className={classes.box}>
+              <div id={classes.purple} className={classes.cardBackground} />
               <div className={classes.sectionContainer}>
                 <div className={classes.wrapper}>
                   <img src={Plus} alt="plus icon" className={classes.icon} />
@@ -264,12 +341,13 @@ const UserMainPage = () => {
                   </div>
                 </div>
                 <UserTextArea
-                  name="word  3"
+                  name="extra"
                   onInputChange={handleInputChange}
-                  rows={isBigScreen ? 8 : 6}
+                  rows={isBigScreen ? 6 : 4}
                   cols={isBigScreen ? 50 : 170}
                   style={classes.textarea}
                   content=""
+                  value={formData.get("extra")}
                 />
               </div>
             </div>

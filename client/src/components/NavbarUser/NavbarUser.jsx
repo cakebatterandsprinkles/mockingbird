@@ -30,9 +30,7 @@ class NavbarUser extends Component {
             className={classes.navbarLink}
             to="/today"
             activeStyle={{
-              backgroundColor: "#e7e7e7",
-              borderRadius: "5px",
-              borderBottom: "1px solid #aa82fe",
+              borderBottom: "2px solid #aa82fe",
             }}
           >
             <p>Today</p>
@@ -41,9 +39,7 @@ class NavbarUser extends Component {
             className={classes.navbarLink}
             to="/calendar"
             activeStyle={{
-              backgroundColor: "#e7e7e7",
-              borderRadius: "5px",
-              borderBottom: "1px solid #aa82fe",
+              borderBottom: "2px solid #aa82fe",
             }}
           >
             <p>Calendar</p>

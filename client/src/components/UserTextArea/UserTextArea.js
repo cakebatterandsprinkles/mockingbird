@@ -12,6 +12,7 @@ const UserTextArea = (props) => {
         rows={props.rows}
         cols={props.cols}
         className={props.style}
+        value={props.value}
       ></textarea>
     </div>
   );
