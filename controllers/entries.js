@@ -9,7 +9,13 @@ exports.postToday = (req, res, next) => {
       user: req.user.id,
       date: req.body.date,
     },
-    newEntry
+    newEntry,
+    {
+      new: true,
+      setDefaultsOnInsert: true,
+      upsert: true,
+      useFindAndModify: false,
+    }
   )
     .then((entry) => {
       res.json(entry);

@@ -150,30 +150,34 @@ exports.postLogin = (req, res, next) => {
   try {
     User.findOne({
       email: email,
-    }).then((userInfo) => {
-      if (!userInfo) {
-        return res
-          .status(400)
-          .send("User with this email address does not exist.");
-      }
-
-      if (!userInfo.emailConfirmed) {
-        return res
-          .status(400)
-          .send(
-            "We have sent you an email. Confirm your email address to login."
-          );
-      }
-
-      bcrypt.compare(password, userInfo.password).then((isMatch) => {
-        if (!isMatch) {
-          return res.status(400).send("Wrong password.");
+    })
+      .then((userInfo) => {
+        if (!userInfo) {
+          return res
+            .status(400)
+            .send("User with this email address does not exist.");
         }
 
-        generateTokenAndSetCookie(res, userInfo.id, userInfo.name);
-        res.json({ id: userInfo.id, name: userInfo.name });
+        if (!userInfo.emailConfirmed) {
+          return res
+            .status(400)
+            .send(
+              "We have sent you an email. Confirm your email address to login."
+            );
+        }
+
+        bcrypt.compare(password, userInfo.password).then((isMatch) => {
+          if (!isMatch) {
+            return res.status(400).send("Wrong password.");
+          }
+
+          generateTokenAndSetCookie(res, userInfo.id, userInfo.name);
+          res.json({ id: userInfo.id, name: userInfo.name });
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json(err.toString());
       });
-    });
   } catch (err) {
     return res.status(500).json(err.toString());
   }
