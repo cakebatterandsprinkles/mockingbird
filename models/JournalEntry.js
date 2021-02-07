@@ -20,11 +20,11 @@ const JournalEntrySchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
-  new: {
+  newExperience: {
     type: String,
     default: "",
   },
-  addition: {
+  extra: {
     type: String,
     default: "",
   },
