@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { Component, Fragment } from "react";
 import Circle from "../../assets/circle.png";
 import CloseButton from "../../assets/closeButton.png";
@@ -29,14 +30,30 @@ class Calendar extends Component {
       entered: true,
       drawerOpen: false,
       monthName: month,
+      day: day,
       month: today.getMonth(),
       year: year,
       date: `${month} ${day}, ${year}`,
+      monthlyEntries: [],
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
     this.getPrevMonth = this.getPrevMonth.bind(this);
     this.getNextMonth = this.getNextMonth.bind(this);
+    this.renderDailyEntryIcons = this.renderDailyEntryIcons.bind(this);
+  }
+
+  componentDidMount() {
+    axios
+      .get(
+        `/calendar?year=${this.state.year}&month=${
+          this.state.month + 1
+        }&daysInMonth=${getDaysInMonth(this.state.month, this.state.year)}`
+      )
+      .then((res) => {
+        this.setState({ monthlyEntries: [...res.data] });
+      })
+      .catch((err) => console.log(err));
   }
 
   toggleDrawer(e) {
@@ -129,6 +146,7 @@ class Calendar extends Component {
               key={date}
             >
               {date}
+              <div>{this.renderDailyEntryIcons(date)}</div>
             </div>
           );
         })}
@@ -145,27 +163,33 @@ class Calendar extends Component {
     );
   }
 
-  showEntriesOnCalendar = (entryArr, date) => {
-    const entries = entryArr.filter((entry) => {
-      return entry.date.substring(8, 10) === date.toString().padStart(2, "0");
+  renderDailyEntryIcons = (date) => {
+    const entry = this.state.monthlyEntries.find((item) => {
+      return item.date.substring(8, 10) === date.toString().padStart(2, "0");
     });
-    // here, return the symnbols that exist for that day's entries
-    const entryTitleArr = [];
-    // entries.forEach((entry) => {
-    //   for (key of entry) {
-    //     if (key) {
-    //       entryTitleArr.push(key)
-    //     }
-    //   }
-    // });
 
-    return (
-      <div className={classes.entryIconsWrapper}>
-        {entryTitleArr.includes("heard") ? (
-          <img src={Circle} alt="circle icon" className={classes.entryIcons} />
-        ) : null}
-      </div>
-    );
+    const titles = [
+      { title: "heard", icon: Circle },
+      { title: "saw", icon: Triangle },
+      { title: "thought", icon: Star },
+      { title: "words", icon: Rectangle },
+      { title: "newExperience", icon: Pentagon },
+      { title: "extra", icon: Plus },
+    ];
+
+    return titles.map(({ title, icon }) => {
+      if (entry && entry[title].length) {
+        return (
+          <img
+            src={icon}
+            alt={`${title} icon`}
+            className={classes.entryIcons}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
   };
 
   render() {
