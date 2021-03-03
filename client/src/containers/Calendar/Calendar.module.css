@@ -195,7 +195,8 @@
 }
 
 .entryIcons {
-  height: 0.8rem;
+  height: 0.6rem;
+  margin-right: .15rem;
   width: auto;
 }
 
@@ -219,6 +220,28 @@
 
 .mainWrapper {
   display: flex;
+}
+
+.dateContainer {
+  height: 1.5rem;
+}
+
+.calendarIconsContainer {
+  height: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  .dateContainer {
+    height: 1rem;
+    margin-bottom: .1rem;
+  }
+  .calendarIconsContainer {
+    height: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-row-gap: .1rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -252,7 +275,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0.5rem 0.25rem;
+    margin: 0.25rem 0.1rem;
   }
 
   .calendarContainer {
@@ -274,7 +297,8 @@
   }
 
   .entryIcons {
-    height: 0.65rem;
+    height: 0.5rem;
+    margin-right: .1rem;
     width: auto;
   }
 }

@@ -145,8 +145,10 @@ class Calendar extends Component {
               }}
               key={date}
             >
-              {date}
-              <div>{this.renderDailyEntryIcons(date)}</div>
+              <div className={classes.dateContainer}>{date}</div>
+              <div className={classes.calendarIconsContainer}>
+                {this.renderDailyEntryIcons(date)}
+              </div>
             </div>
           );
         })}
