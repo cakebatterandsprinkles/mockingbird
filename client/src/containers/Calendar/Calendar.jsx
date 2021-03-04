@@ -35,6 +35,12 @@ class Calendar extends Component {
       year: year,
       date: `${month} ${day}, ${year}`,
       monthlyEntries: [],
+      selectedHeard: [],
+      selectedSaw: [],
+      selectedThought: [],
+      selectedToday: [],
+      selectedNewExperience: "",
+      selectedExtra: "",
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
@@ -65,7 +71,15 @@ class Calendar extends Component {
     });
   }
   closeDrawer() {
-    this.setState({ drawerOpen: false });
+    this.setState({
+      drawerOpen: false,
+      selectedHeard: [],
+      selectedSaw: [],
+      selectedThought: [],
+      selectedToday: [],
+      selectedNewExperience: "",
+      selectedExtra: "",
+    });
   }
 
   getPrevMonth() {
@@ -142,6 +156,7 @@ class Calendar extends Component {
               }
               onClick={(e) => {
                 this.toggleDrawer(e);
+                this.renderDrawerContent(date);
               }}
               key={date}
             >
@@ -164,6 +179,22 @@ class Calendar extends Component {
       </Fragment>
     );
   }
+
+  renderDrawerContent = (date) => {
+    let entry = this.state.monthlyEntries.find((entry) => {
+      return entry.date.substring(8, 10) === date.toString().padStart(2, "0");
+    });
+    if (entry) {
+      this.setState({
+        selectedHeard: entry.heard,
+        selectedSaw: entry.saw,
+        selectedThought: entry.thought,
+        selectedToday: entry.today,
+        selectedNewExperience: entry.newExperience,
+        selectedExtra: entry.extra,
+      });
+    }
+  };
 
   renderDailyEntryIcons = (date) => {
     const entry = this.state.monthlyEntries.find((item) => {
@@ -195,6 +226,44 @@ class Calendar extends Component {
   };
 
   render() {
+    const titles = [
+      {
+        title: "heard",
+        subtitle: "3 of the interesting / weird things you heard somebody say:",
+        icon: Circle,
+        data: this.state.selectedHeard,
+      },
+      {
+        title: "saw",
+        subtitle: "3 of the interesting / weird things you saw:",
+        icon: Triangle,
+        data: this.state.selectedSaw,
+      },
+      {
+        title: "thought",
+        subtitle: "3 of the interesting / weird things you thought about:",
+        icon: Star,
+        data: this.state.selectedThought,
+      },
+      {
+        title: "words",
+        subtitle: "3 words to describe today:",
+        icon: Rectangle,
+        data: this.state.selectedWords,
+      },
+      {
+        title: "newExperience",
+        subtitle: "1 new thing you learned or tried for the first time:",
+        icon: Pentagon,
+        data: this.state.selectedNewExperience,
+      },
+      {
+        title: "extra",
+        subtitle: "1 thing you want to add:",
+        icon: Plus,
+        data: this.state.selectedExtra,
+      },
+    ];
     return (
       <Fragment>
         <div className={classes.mainContainer}>
@@ -234,75 +303,29 @@ class Calendar extends Component {
             />
             <div className={classes.drawerContent}>
               <div className={classes.heading}>{this.state.date}</div>
-              <div className={classes.sectionContainer}>
-                <div className={classes.wrapper}>
-                  <img
-                    src={Circle}
-                    alt="circle icon"
-                    className={classes.icon}
-                  />
-                  <div className={classes.headerContainer}>
-                    <p>
-                      3 of the interesting / weird things you heard somebody
-                      say:
-                    </p>
+              {titles.map((title) => {
+                return (
+                  <div className={classes.sectionContainer}>
+                    <div className={classes.wrapper}>
+                      <img
+                        src={title.icon}
+                        alt={`${title.title} icon`}
+                        className={classes.icon}
+                      />
+                      <div className={classes.headerContainer}>
+                        <p>{title.subtitle}</p>
+                      </div>
+                      <div>
+                        {typeof title.data === "string" || title.data == null
+                          ? title.data
+                          : Array.from(title.data).map((item) => (
+                              <div>{item}</div>
+                            ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className={classes.sectionContainer}>
-                <div className={classes.wrapper}>
-                  <img
-                    src={Triangle}
-                    alt="triangle icon"
-                    className={classes.icon}
-                  />
-                  <div className={classes.headerContainer}>
-                    <p>3 of the interesting / weird things you saw:</p>
-                  </div>
-                </div>
-              </div>
-              <div className={classes.sectionContainer}>
-                <div className={classes.wrapper}>
-                  <img src={Star} alt="star icon" className={classes.icon} />
-                  <div className={classes.headerContainer}>
-                    <p>
-                      3 of the interesting / weird things you thought about:
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className={classes.sectionContainer}>
-                <div className={classes.wrapper}>
-                  <img
-                    src={Rectangle}
-                    alt="rectangle icon"
-                    className={classes.icon}
-                  />
-                  <div className={classes.headerContainer}>
-                    <p>3 words to describe today:</p>
-                  </div>
-                </div>
-              </div>
-              <div className={classes.sectionContainer}>
-                <div className={classes.wrapper}>
-                  <img
-                    src={Pentagon}
-                    alt="pentagon icon"
-                    className={classes.icon}
-                  />
-                  <div className={classes.headerContainer}>
-                    <p>1 new thing you learned or tried for the first time:</p>
-                  </div>
-                </div>
-              </div>
-              <div className={classes.sectionContainer}>
-                <div className={classes.wrapper}>
-                  <img src={Plus} alt="plus icon" className={classes.icon} />
-                  <div className={classes.headerContainer}>
-                    <p>1 thing you want to add:</p>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </Drawer>
         </div>
