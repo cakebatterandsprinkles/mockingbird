@@ -75,7 +75,7 @@
   background-color: var(--offwhite);
   border: 2px solid var(--black);
   border-radius: 50px;
-  margin: 1rem 1rem;
+  margin: .5rem 1rem 1rem 1rem; 
 }
 
 .calendarContainer {
@@ -176,13 +176,18 @@
 .wrapper {
   display: flex;
   align-items: center;
-  margin: 1.2rem 0.5rem 0.5rem 1.2rem;
+  margin: 1.2rem 0.5rem 0.25rem 1.2rem;
+}
+
+.entryContainer{
+  margin: .25rem 3.5rem;
+  color: var(--black);
 }
 
 .headerContainer {
   font-family: var(--headingFont);
   width: 90%;
-  font-weight: 600;
+  font-weight: bold;
   margin: 0 1rem;
   font-size: 0.9rem;
   color: var(--black) !important;

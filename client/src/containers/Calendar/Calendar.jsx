@@ -189,7 +189,7 @@ class Calendar extends Component {
         selectedHeard: entry.heard,
         selectedSaw: entry.saw,
         selectedThought: entry.thought,
-        selectedToday: entry.today,
+        selectedToday: entry.words,
         selectedNewExperience: entry.newExperience,
         selectedExtra: entry.extra,
       });
@@ -211,7 +211,11 @@ class Calendar extends Component {
     ];
 
     return titles.map(({ title, icon }) => {
-      if (entry && entry[title].length) {
+      if (
+        entry &&
+        entry[title].length &&
+        (typeof entry[title] === "string" || entry[title].some((item) => item))
+      ) {
         return (
           <img
             src={icon}
@@ -249,7 +253,7 @@ class Calendar extends Component {
         title: "words",
         subtitle: "3 words to describe today:",
         icon: Rectangle,
-        data: this.state.selectedWords,
+        data: this.state.selectedToday,
       },
       {
         title: "newExperience",
@@ -315,13 +319,15 @@ class Calendar extends Component {
                       <div className={classes.headerContainer}>
                         <p>{title.subtitle}</p>
                       </div>
-                      <div>
-                        {typeof title.data === "string" || title.data == null
-                          ? title.data
-                          : Array.from(title.data).map((item) => (
-                              <div>{item}</div>
+                    </div>
+                    <div className={classes.entryContainer}>
+                      {typeof title.data === "string" || title.data == null
+                        ? title.data
+                        : Array.from(title.data)
+                            .filter((item) => item)
+                            .map((item) => (
+                              <div className={classes.entry}>{`𐡸 ${item}`}</div>
                             ))}
-                      </div>
                     </div>
                   </div>
                 );
