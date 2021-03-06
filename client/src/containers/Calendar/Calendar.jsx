@@ -325,6 +325,13 @@ class Calendar extends Component {
                       </div>
                     </div>
                     <div className={classes.entryContainer}>
+                      {typeof title.data === "string" && !title.data ? (
+                        <div className={classes.entry}>—</div>
+                      ) : null}
+                      {typeof title.data === "object" &&
+                      [...new Set(title.data)].length <= 1 ? (
+                        <div className={classes.entry}>—</div>
+                      ) : null}
                       {typeof title.data === "string" || title.data == null
                         ? title.data
                         : Array.from(title.data)
