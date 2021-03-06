@@ -221,6 +221,7 @@ class Calendar extends Component {
             src={icon}
             alt={`${title} icon`}
             className={classes.entryIcons}
+            key={`${title}-${icon}`}
           />
         );
       } else {
@@ -307,9 +308,12 @@ class Calendar extends Component {
             />
             <div className={classes.drawerContent}>
               <div className={classes.heading}>{this.state.date}</div>
-              {titles.map((title) => {
+              {titles.map((title, index) => {
                 return (
-                  <div className={classes.sectionContainer}>
+                  <div
+                    className={classes.sectionContainer}
+                    key={`${title}-${index}`}
+                  >
                     <div className={classes.wrapper}>
                       <img
                         src={title.icon}
@@ -325,8 +329,11 @@ class Calendar extends Component {
                         ? title.data
                         : Array.from(title.data)
                             .filter((item) => item)
-                            .map((item) => (
-                              <div className={classes.entry}>{`𐡸 ${item}`}</div>
+                            .map((item, index) => (
+                              <div
+                                className={classes.entry}
+                                key={`${item}-${index}`}
+                              >{`𐡸 ${item}`}</div>
                             ))}
                     </div>
                   </div>
