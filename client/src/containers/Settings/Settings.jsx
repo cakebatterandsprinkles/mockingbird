@@ -1,6 +1,6 @@
-import React, { Component } from "react";
 import axios from "axios";
-import Button from "../../components/Button/Button";
+import React, { Component } from "react";
+import { toast } from "react-toastify";
 import classes from "./Settings.module.css";
 
 class Settings extends Component {
@@ -10,25 +10,10 @@ class Settings extends Component {
       currentPassword: "",
       newPassword: "",
       repeatNewPassword: "",
-      userConfirmationMessage: "Can't save new settings at the moment.",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-  }
-
-  setUserName = () => {
-    this.setState({ name: this.props.username });
-  };
-
-  componentDidMount() {
-    this.setUserName();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.username !== prevProps.username) {
-      this.setUserName();
-    }
   }
 
   handleInputChange = (event) => {
@@ -41,7 +26,30 @@ class Settings extends Component {
     });
   };
 
-  submitForm = () => {};
+  submitForm = (event) => {
+    event.preventDefault();
+    axios
+      .post(
+        "/settings",
+        {
+          currentPassword: this.state.currentPassword,
+          newPassword: this.state.newPassword,
+          repeatNewPassword: this.state.repeatNewPassword,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("Password change was successful.");
+        }
+      })
+      .catch((err) => {
+        err.response
+          ? toast.error(err.response.data)
+          : toast.error("Can't save new settings at the moment.");
+        console.log(err);
+      });
+  };
 
   render() {
     return (
@@ -91,9 +99,15 @@ class Settings extends Component {
               onChange={this.handleInputChange}
             ></input>
           </div>
-            <div className={classes.btnWrapper}>
-              <Button link="/today" name="Save Changes" buttonStyle={classes.link} />
-            </div>
+          <div className={classes.btnWrapper}>
+            <button
+              className={classes.button}
+              type="submit"
+              onClick={this.submitForm}
+            >
+              Save
+            </button>
+          </div>
         </form>
       </div>
     );

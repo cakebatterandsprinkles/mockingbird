@@ -295,10 +295,6 @@ exports.postSettings = (req, res, next) => {
     }
   }
 
-  if (name.length > 25) {
-    return res.status(400).send("Username must be shorter than 25 characters.");
-  }
-
   try {
     User.findOne({
       _id: req.user.id,
@@ -312,7 +308,6 @@ exports.postSettings = (req, res, next) => {
         repeatNewPassword === "" ||
         currentPassword === ""
       ) {
-        userInfo.name = name;
         userInfo.save();
         return res.status(200).end();
       }
