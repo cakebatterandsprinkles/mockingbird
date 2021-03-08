@@ -20,12 +20,6 @@ class Settings extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleFormSubmit = () => {
-    this.setState({
-      userConfirmationMessage: "Setting changes were successful.",
-    });
-  };
-
   submitForm = (event) => {
     event.preventDefault();
     axios
