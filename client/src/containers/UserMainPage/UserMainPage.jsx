@@ -119,35 +119,52 @@ const UserMainPage = () => {
       });
   };
 
+  const validateInput = () => {
+    const formDataArr = Array.from(formData.values());
+    for (const value of formData.values()) {
+      if (
+        value !== "" &&
+        formDataArr.filter((item) => item === value).length > 1
+      ) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success("You have successfully saved your new journal entry!");
-    const today = new Date();
-    const todayString = `${today.getFullYear()}-${(today.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
+    if (validateInput()) {
+      toast.success("You have successfully saved your new journal entry!");
+      const today = new Date();
+      const todayString = `${today.getFullYear()}-${(today.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
 
-    const entry = {
-      heard: [
-        formData.get("heard1"),
-        formData.get("heard2"),
-        formData.get("heard3"),
-      ],
-      saw: [formData.get("saw1"), formData.get("saw2"), formData.get("saw3")],
-      thought: [
-        formData.get("thought1"),
-        formData.get("thought2"),
-        formData.get("thought3"),
-      ],
-      words: [
-        formData.get("words1"),
-        formData.get("words2"),
-        formData.get("words3"),
-      ],
-      extra: formData.get("extra"),
-      newExperience: formData.get("newExperience"),
-    };
-    addEntry(entry, todayString);
+      const entry = {
+        heard: [
+          formData.get("heard1"),
+          formData.get("heard2"),
+          formData.get("heard3"),
+        ],
+        saw: [formData.get("saw1"), formData.get("saw2"), formData.get("saw3")],
+        thought: [
+          formData.get("thought1"),
+          formData.get("thought2"),
+          formData.get("thought3"),
+        ],
+        words: [
+          formData.get("words1"),
+          formData.get("words2"),
+          formData.get("words3"),
+        ],
+        extra: formData.get("extra"),
+        newExperience: formData.get("newExperience"),
+      };
+      addEntry(entry, todayString);
+    } else {
+      toast.error("Journal entries have to be unique!");
+    }
   };
 
   useEffect(() => {
