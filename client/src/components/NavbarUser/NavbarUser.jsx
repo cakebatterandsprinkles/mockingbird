@@ -51,41 +51,37 @@ class NavbarUser extends Component {
               className={`${classes.settingsIcon} ${classes.dropbtn}`}
             />
             <div className={classes.dropdownContent}>
-              <div className={classes.linkContainer}>
-                <Link
-                  to="/settings"
-                  style={{
-                    textDecoration: "none",
-                    color: "black",
-                  }}
-                >
-                  Settings
-                </Link>
-              </div>
+              <Link
+                to="/settings"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                }}
+              >
+                <div className={classes.linkContainer}>Settings</div>
+              </Link>
               <div
                 className={classes.linkContainer}
                 onClick={this.reverseColor}
               >
                 <p>Change Mode</p>
               </div>
-              <div className={classes.linkContainerBottom}>
-                <UserContext.Consumer>
-                  {(context) => (
-                    <Link
-                      to="/login"
-                      style={{
-                        textDecoration: "none",
-                        color: "black",
-                      }}
-                      onClick={() => {
-                        context.setUserData(null);
-                      }}
-                    >
-                      Logout
-                    </Link>
-                  )}
-                </UserContext.Consumer>
-              </div>
+              <UserContext.Consumer>
+                {(context) => (
+                  <Link
+                    to="/login"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                    }}
+                    onClick={() => {
+                      context.setUserData(null);
+                    }}
+                  >
+                    <div className={classes.linkContainerBottom}>Logout</div>
+                  </Link>
+                )}
+              </UserContext.Consumer>
             </div>
           </div>
         </div>

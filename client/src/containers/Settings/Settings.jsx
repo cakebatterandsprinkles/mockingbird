@@ -13,7 +13,6 @@ class Settings extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleInputChange = (event) => {
