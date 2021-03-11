@@ -10,11 +10,9 @@ import Triangle from "../../assets/triangle.png";
 import UserForm from "../../components/UserForm/UserForm";
 import UserTextArea from "../../components/UserTextArea/UserTextArea";
 import quotes from "../../data/quotes.json";
-import { setDate } from "../../util/date";
 import classes from "./UserMainPage.module.css";
 
 const UserMainPage = () => {
-  const [currentDate, setCurrentDate] = useState("");
   const [footerText, setFooterText] = useState("");
   const [author, setAuthor] = useState("");
   const [isBigScreen, setIsBigScreen] = useState(true);
@@ -168,8 +166,6 @@ const UserMainPage = () => {
   };
 
   useEffect(() => {
-    const date = setDate();
-    setCurrentDate(date);
     getEntries();
     handleWindowResize();
     handleFirstTextarea();
