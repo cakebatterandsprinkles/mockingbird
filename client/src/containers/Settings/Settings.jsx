@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { toast } from "react-toastify";
+import PasswordInput from "../PasswordInput/PasswordInput";
 import classes from "./Settings.module.css";
 
 class Settings extends Component {
@@ -11,12 +12,19 @@ class Settings extends Component {
       newPassword: "",
       repeatNewPassword: "",
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
 
-  handleInputChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+  handleCurrentPassword = (newValue) => {
+    this.setState({ currentPassword: newValue });
+  };
+
+  handleNewPassword = (newValue) => {
+    this.setState({ newPassword: newValue });
+  };
+
+  handleNewPasswordRepeat = (newValue) => {
+    this.setState({ repeatNewPassword: newValue });
   };
 
   submitForm = (event) => {
@@ -58,46 +66,23 @@ class Settings extends Component {
         <div className={classes.headingContainer}>
           <p className={classes.heading}>Settings</p>
         </div>
-        <form>
-          <div
-            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-          >
-            <label htmlFor="currentPassword">Current Password:</label>
-            <input
-              type="password"
-              name="currentPassword"
-              id="currentPassword"
-              onChange={this.handleInputChange}
-            ></input>
-          </div>
-          <div
-            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-          >
-            <label htmlFor="newPassword">New Password:</label>
-            <input
-              type="password"
-              name="newPassword"
-              id="newPassword"
-              onChange={this.handleInputChange}
-            ></input>
-          </div>
-          <div
-            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-          >
-            <label htmlFor="repeatNewPassword">Repeat New Password:</label>
-            <input
-              type="password"
-              name="repeatNewPassword"
-              id="repeatNewPassword"
-              onChange={this.handleInputChange}
-            ></input>
+        <form onSubmit={this.submitForm}>
+          <div className={classes.inputWrapper}>
+            <PasswordInput
+              label="Current Password"
+              handleChange={this.handleCurrentPassword}
+            />
+            <PasswordInput
+              label="New Password"
+              handleChange={this.handleNewPassword}
+            />
+            <PasswordInput
+              label="Repeat New Password"
+              handleChange={this.handleNewPasswordRepeat}
+            />
           </div>
           <div className={classes.btnWrapper}>
-            <button
-              className={classes.button}
-              type="submit"
-              onClick={this.submitForm}
-            >
+            <button className={classes.button} type="submit">
               Save
             </button>
           </div>
