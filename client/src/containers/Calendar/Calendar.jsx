@@ -95,12 +95,21 @@ class Calendar extends Component {
     } else {
       newYear = this.state.year;
     }
-    this.setState({
-      month: newMonth,
-      year: newYear,
-      monthName: getMonthName(newMonth),
-    });
-    this.fetchMonthlyEntries();
+    this.setState(
+      {
+        month: newMonth,
+        year: newYear,
+        monthName: getMonthName(newMonth),
+        monthlyEntries: [],
+        selectedHeard: [],
+        selectedSaw: [],
+        selectedThought: [],
+        selectedToday: [],
+        selectedNewExperience: "",
+        selectedExtra: "",
+      },
+      this.fetchMonthlyEntries
+    );
   }
 
   getNextMonth() {
@@ -112,12 +121,21 @@ class Calendar extends Component {
     } else {
       newYear = this.state.year;
     }
-    this.setState({
-      month: newMonth,
-      year: newYear,
-      monthName: getMonthName(newMonth),
-    });
-    this.fetchMonthlyEntries();
+    this.setState(
+      {
+        month: newMonth,
+        year: newYear,
+        monthName: getMonthName(newMonth),
+        monthlyEntries: [],
+        selectedHeard: [],
+        selectedSaw: [],
+        selectedThought: [],
+        selectedToday: [],
+        selectedNewExperience: "",
+        selectedExtra: "",
+      },
+      this.fetchMonthlyEntries
+    );
   }
 
   renderPadding() {
