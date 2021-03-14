@@ -79,6 +79,10 @@
   justify-content: center;
 }
 
+.dropdownContent a {
+  width: 100%;
+}
+
 .settingsIcon {
   height: 2rem;
   width: auto;
