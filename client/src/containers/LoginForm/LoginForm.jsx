@@ -1,15 +1,28 @@
 import axios from "axios";
-import React, { Fragment } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
+import { ReactComponent as Eye } from "../../assets/eye.svg";
+import { ReactComponent as EyeSlash } from "../../assets/eyeSlash.svg";
 import { useUserContext } from "../../context/authContext";
 import classes from "./LoginForm.module.css";
 
-const LoginForm = (props) => {
+const LoginForm = () => {
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
+  const [inputType, setInputType] = useState("password");
   const { setUserData } = useUserContext();
+
+  const passwordRef = useRef(null);
+
+  const handleShowPassword = () => {
+    if (passwordRef.current.type === "password") {
+      setInputType("text");
+    } else if (passwordRef.current.type === "text") {
+      setInputType("password");
+    }
+  };
 
   const onSubmit = (data, e) => {
     axios
@@ -65,25 +78,38 @@ const LoginForm = (props) => {
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
             <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              ref={register({ required: true, minLength: 8 })}
-            ></input>
-            {errors.password && errors.password.type === "required" && (
-              <span className={classes.error}>Password field is required.</span>
-            )}
+            <div className={classes.inputWrapper}>
+              <input
+                type={inputType}
+                name="password"
+                id="password"
+                ref={(ref) => {
+                  passwordRef.current = ref;
+                  register(ref, { required: true, minLength: 8 });
+                }}
+              ></input>
+              {errors.password && errors.password.type === "required" && (
+                <span className={classes.error}>
+                  Password field is required.
+                </span>
+              )}
+              {passwordRef.current?.type === "password" ? (
+                <EyeSlash
+                  className={classes.eyeslash}
+                  onClick={handleShowPassword}
+                />
+              ) : (
+                <Eye className={classes.eye} onClick={handleShowPassword} />
+              )}
+            </div>
           </div>
           <div className={classes.resetPasswordLink}>
             <p>Forgot password?</p>
           </div>
-          <div className={classes.btnWrapper}>
-            <input
-              type="submit"
-              className={classes.link}
-              value="(≧◡≦) Login"
-            ></input>
+          <div className={classes.loginButton}>
+            <button className={classes.button} type="submit">
+              ʕ•́ᴥ•̀ʔっ Login
+            </button>
           </div>
         </form>
       </div>

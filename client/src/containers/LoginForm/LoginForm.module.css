@@ -71,10 +71,28 @@
   margin-bottom: 0.5rem;
 }
 
-.btnWrapper {
+.loginButton {
   display: flex;
   justify-content: flex-end;
-  margin-top: 2rem;
+}
+
+.button {
+  padding: 0.6rem 1.5rem;
+  background-color: var(--yellow);
+  border: 1px solid var(--black);
+  cursor: pointer;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.button:hover,
+.button:focus,
+.button:active {
+  background-color: var(--lightyellow);
+  transition-duration: 0.3s;
 }
 
 .resetButton {
@@ -199,6 +217,32 @@
 
 .purple {
   background-color: var(--purple);
+}
+
+.inputWrapper{
+  position:relative;
+}
+
+.eyeslash, .eye {
+  position:absolute;
+  width: 2rem;
+  height: 2.25rem;
+  right:0; top:0; bottom:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 0 .5rem;
+  margin-left: .5rem;
+  background-color: var(--snow);
+  color: var(--black);
+  border: 1px solid var(--black)
+}
+
+.eyeslash:hover, .eye:hover {
+  background: var(--dirtysnow)
 }
 
 @media (max-width: 1200px) {
