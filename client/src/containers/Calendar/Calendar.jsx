@@ -49,7 +49,7 @@ class Calendar extends Component {
     this.renderDailyEntryIcons = this.renderDailyEntryIcons.bind(this);
   }
 
-  componentDidMount() {
+  fetchMonthlyEntries() {
     axios
       .get(
         `/calendar?year=${this.state.year}&month=${
@@ -60,6 +60,10 @@ class Calendar extends Component {
         this.setState({ monthlyEntries: [...res.data] });
       })
       .catch((err) => console.log(err));
+  }
+
+  componentDidMount() {
+    this.fetchMonthlyEntries();
   }
 
   toggleDrawer(e) {
@@ -96,6 +100,7 @@ class Calendar extends Component {
       year: newYear,
       monthName: getMonthName(newMonth),
     });
+    this.fetchMonthlyEntries();
   }
 
   getNextMonth() {
@@ -112,6 +117,7 @@ class Calendar extends Component {
       year: newYear,
       monthName: getMonthName(newMonth),
     });
+    this.fetchMonthlyEntries();
   }
 
   renderPadding() {
@@ -143,16 +149,24 @@ class Calendar extends Component {
     const dateArray = [];
 
     for (let day = 1; day <= daysInCurrentMonth; day++) {
-      dateArray.push(day);
+      dateArray.push({
+        date: day,
+        month: new Date().getMonth(),
+        year: new Date().getFullYear(),
+      });
     }
 
     return (
       <Fragment>
-        {dateArray.map((date) => {
+        {dateArray.map(({ date, month, year }) => {
           return (
             <div
               className={
-                date !== new Date().getDate() ? classes.days : classes.today
+                date === new Date().getDate() &&
+                this.state.month === new Date().getMonth() &&
+                this.state.year === new Date().getFullYear()
+                  ? classes.today
+                  : classes.days
               }
               onClick={(e) => {
                 this.toggleDrawer(e);
