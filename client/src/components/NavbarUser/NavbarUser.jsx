@@ -58,10 +58,14 @@ class NavbarUser extends Component {
                   color: "black",
                 }}
               >
-                <div className={classes.linkContainer}>Settings</div>
+                <div
+                  className={`${classes.linkContainer} ${classes.borderBottom}`}
+                >
+                  Settings
+                </div>
               </Link>
               <div
-                className={classes.linkContainer}
+                className={`${classes.linkContainer} ${classes.borderBottom}`}
                 onClick={this.reverseColor}
               >
                 <p>Change Mode</p>
@@ -78,7 +82,7 @@ class NavbarUser extends Component {
                       context.setUserData(null);
                     }}
                   >
-                    <div className={classes.linkContainerBottom}>Logout</div>
+                    <div className={classes.linkContainer}>Logout</div>
                   </Link>
                 )}
               </UserContext.Consumer>
