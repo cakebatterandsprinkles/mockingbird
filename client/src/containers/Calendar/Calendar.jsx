@@ -151,8 +151,8 @@ class Calendar extends Component {
     for (let day = 1; day <= daysInCurrentMonth; day++) {
       dateArray.push({
         date: day,
-        month: new Date().getMonth(),
-        year: new Date().getFullYear(),
+        month: this.state.month,
+        year: this.state.year,
       });
     }
 
@@ -163,8 +163,8 @@ class Calendar extends Component {
             <div
               className={
                 date === new Date().getDate() &&
-                this.state.month === new Date().getMonth() &&
-                this.state.year === new Date().getFullYear()
+                month === new Date().getMonth() &&
+                year === new Date().getFullYear()
                   ? classes.today
                   : classes.days
               }
