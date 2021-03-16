@@ -6,6 +6,11 @@ import UserContext from "../../context/authContext.js";
 import classes from "./NavbarUser.module.css";
 
 class NavbarUser extends Component {
+  constructor(props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+  }
+
   reverseColor = () => {
     const page = document.body;
     const hc = document.querySelectorAll(".headingContainer");
@@ -13,6 +18,13 @@ class NavbarUser extends Component {
     const hcArray = Array.from(hc);
     hcArray.forEach((hc) => {
       hc.classList.toggle("light-border");
+    });
+  };
+
+  logout = () => {
+    return fetch("/logout", {
+      method: "POST",
+      credentials: "include",
     });
   };
 
@@ -79,6 +91,7 @@ class NavbarUser extends Component {
                       color: "black",
                     }}
                     onClick={() => {
+                      this.logout();
                       context.setUserData(null);
                     }}
                   >
