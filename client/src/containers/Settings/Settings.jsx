@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { toast } from "react-toastify";
+import Dots from "../../components/Dots/Dots";
 import PasswordInput from "../PasswordInput/PasswordInput";
 import classes from "./Settings.module.css";
 
@@ -55,14 +56,7 @@ class Settings extends Component {
   render() {
     return (
       <div className={classes.mainContainer}>
-        <div className={classes.flexContainerRow}>
-          <div className={`${classes.dot} ${classes.yellow}`}></div>
-          <div className={`${classes.dot} ${classes.orange}`}></div>
-          <div className={`${classes.dot} ${classes.red}`}></div>
-          <div className={`${classes.dot} ${classes.green}`}></div>
-          <div className={`${classes.dot} ${classes.blue}`}></div>
-          <div className={`${classes.dot} ${classes.purple}`}></div>
-        </div>
+        <Dots />
         <div className={classes.headingContainer}>
           <p className={classes.heading}>Settings</p>
         </div>

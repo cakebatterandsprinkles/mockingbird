@@ -188,42 +188,6 @@
   transition-duration: 0.3s;
 }
 
-.flexContainerRow {
-  display: flex;
-  margin-bottom: 2rem;
-}
-
-.dot {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 1rem;
-  border-radius: 50px;
-}
-
-.yellow {
-  background-color: var(--yellow);
-}
-
-.orange {
-  background-color: var(--orange);
-}
-
-.red {
-  background-color: var(--red);
-}
-
-.green {
-  background-color: var(--darkgreen);
-}
-
-.blue {
-  background-color: var(--blue);
-}
-
-.purple {
-  background-color: var(--purple);
-}
-
 .inputWrapper {
   position: relative;
 }

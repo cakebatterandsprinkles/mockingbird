@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import { ReactComponent as Eye } from "../../assets/eye.svg";
 import { ReactComponent as EyeSlash } from "../../assets/eyeSlash.svg";
+import Dots from "../../components/Dots/Dots";
 import { useUserContext } from "../../context/authContext";
 import classes from "./LoginForm.module.css";
 
@@ -50,14 +51,7 @@ const LoginForm = () => {
   return (
     <Fragment>
       <div className={classes.mainContainer}>
-        <div className={classes.flexContainerRow}>
-          <div className={`${classes.dot} ${classes.yellow}`}></div>
-          <div className={`${classes.dot} ${classes.orange}`}></div>
-          <div className={`${classes.dot} ${classes.red}`}></div>
-          <div className={`${classes.dot} ${classes.green}`}></div>
-          <div className={`${classes.dot} ${classes.blue}`}></div>
-          <div className={`${classes.dot} ${classes.purple}`}></div>
-        </div>
+        <Dots />
         <div className={classes.headingContainer}>
           <p className={classes.heading}>Login</p>
         </div>
