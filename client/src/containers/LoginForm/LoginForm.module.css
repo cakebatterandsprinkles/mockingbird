@@ -290,6 +290,11 @@
     font-size: 0.8rem;
   }
 
+  .eye,
+  .eyeslash {
+    height: 1.8rem;
+  }
+
   .resetPasswordLink {
     font-size: 0.8rem;
   }
