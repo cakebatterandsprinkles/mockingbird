@@ -1,20 +1,14 @@
 import React, { Component, Fragment } from "react";
-import classes from "./ResetPassword.module.css";
 import Button from "../../components/Button/Button";
+import Dots from "../../components/Dots/Dots";
+import classes from "./ResetPassword.module.css";
 
 class ResetPassword extends Component {
   render() {
     return (
       <Fragment>
         <div className={classes.mainContainer}>
-          <div className={classes.flexContainerRow}>
-            <div className={`${classes.dot} ${classes.yellow}`}></div>
-            <div className={`${classes.dot} ${classes.orange}`}></div>
-            <div className={`${classes.dot} ${classes.red}`}></div>
-            <div className={`${classes.dot} ${classes.green}`}></div>
-            <div className={`${classes.dot} ${classes.blue}`}></div>
-            <div className={`${classes.dot} ${classes.purple}`}></div>
-          </div>
+          <Dots />
           <div className={classes.headingContainer}>
             <p className={classes.heading}>Reset Password</p>
           </div>
@@ -42,7 +36,11 @@ class ResetPassword extends Component {
               ></input>
             </div>
             <div className={classes.btnWrapper}>
-              <Button link="/login" name="Reset Password" buttonStyle={classes.link} />
+              <Button
+                link="/login"
+                name="Reset Password"
+                buttonStyle={classes.link}
+              />
             </div>
           </form>
         </div>
