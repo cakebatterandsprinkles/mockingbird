@@ -285,6 +285,11 @@
     font-size: 0.9rem;
   }
 
+  .eye,
+  .eyeslash {
+    height: 1.9rem;
+  }
+
   .formGroupContainer input {
     padding: 0.4rem;
     font-size: 0.8rem;
