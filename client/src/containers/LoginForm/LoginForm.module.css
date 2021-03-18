@@ -9,6 +9,8 @@
 
 .modalMainContainer {
   display: flex;
+  justify-content: space-between;
+  width: 20rem;
   color: var(--black) !important;
 }
 
@@ -20,6 +22,10 @@
 .closingButton {
   height: 1.5rem;
   width: auto;
+}
+
+.modalContentWrapper {
+  width: 100%;
 }
 
 .closingButton:hover {
@@ -37,7 +43,7 @@
 .modalHeadingContainer {
   width: 50%;
   border-bottom: 1.5px solid var(--black);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 :global(.dark-bg) .headingContainer {
@@ -95,10 +101,6 @@
   transition-duration: 0.3s;
 }
 
-.resetButton {
-  margin-top: 1.5rem;
-}
-
 .formGroupContainer {
   display: flex;
   flex-direction: column;
@@ -106,7 +108,7 @@
 
 .formGroupContainer input {
   padding: 0.5rem 1rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-family: var(--headingFont);
   width: 100%;
   color: var(--black);
@@ -152,9 +154,9 @@
 .modal {
   background-color: var(--offwhite);
   z-index: 10000;
-  padding: 2rem 1.5rem 2rem 3rem;
+  padding: 2rem 1.5rem 2rem 2.5rem;
   border-radius: 2rem;
-  border: 1px solid black;
+  outline: none;
 }
 
 .overlay {
@@ -168,6 +170,25 @@
   left: 0;
   right: 0;
   background-color: rgba(12, 12, 12, 0.315);
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  margin-left: auto;
+  font-family: var(--regularFont);
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--offwhite);
+  background-color: var(--purple);
+  outline: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .link {
@@ -196,7 +217,7 @@
 .eye {
   position: absolute;
   width: 2rem;
-  height: 2.25rem;
+  height: 2.1rem;
   right: 0;
   top: 0;
   bottom: 0;

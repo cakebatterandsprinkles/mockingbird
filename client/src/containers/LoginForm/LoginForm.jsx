@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { Fragment, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import Modal from "react-modal";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
+import { ReactComponent as ClosingButton } from "../../assets/closeButton.svg";
 import { ReactComponent as Eye } from "../../assets/eye.svg";
 import { ReactComponent as EyeSlash } from "../../assets/eyeSlash.svg";
 import Dots from "../../components/Dots/Dots";
@@ -13,8 +15,9 @@ const LoginForm = () => {
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const [inputType, setInputType] = useState("password");
+  const [showModal, setShowModal] = useState(false);
+  const [email, setEmail] = useState("");
   const { setUserData } = useUserContext();
-
   const passwordRef = useRef(null);
 
   const handleShowPassword = () => {
@@ -23,6 +26,29 @@ const LoginForm = () => {
     } else if (passwordRef.current.type === "text") {
       setInputType("password");
     }
+  };
+
+  const handleOpenModal = () => setShowModal(true);
+
+  const handleCloseModal = () => setShowModal(false);
+
+  const handleForgotPasswordSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post("/reset-request", {
+        email: email,
+      })
+      .then((response) => {
+        handleCloseModal();
+        if (response.status === 200) {
+          toast.success("Please check your email for further instructions.");
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data);
+        }
+      });
   };
 
   const onSubmit = (data, e) => {
@@ -97,7 +123,7 @@ const LoginForm = () => {
               )}
             </div>
           </div>
-          <div className={classes.resetPasswordLink}>
+          <div className={classes.resetPasswordLink} onClick={handleOpenModal}>
             <p>Forgot password?</p>
           </div>
           <div className={classes.loginButton}>
@@ -107,6 +133,51 @@ const LoginForm = () => {
           </div>
         </form>
       </div>
+      <Modal
+        isOpen={showModal}
+        onRequestClose={handleCloseModal}
+        className={classes.modal}
+        overlayClassName={classes.overlay}
+        ariaHideApp={false}
+      >
+        {
+          <div className={classes.modalMainContainer}>
+            <div className={classes.modalContentWrapper}>
+              <div className={classes.modalHeadingContainer}>
+                <p className={classes.modalHeading}>Reset Password</p>
+              </div>
+              <form
+                className={classes.loginForm}
+                onSubmit={handleForgotPasswordSubmit}
+              >
+                <div className={classes.formGroupContainer}>
+                  <label htmlFor="reset-password-email">Email:</label>
+                  <input
+                    type="email"
+                    name="reset-password-email"
+                    id="reset-password-email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  ></input>
+                </div>
+                <div className={classes.btnWrapper}>
+                  <button type="submit" className={classes.btn}>
+                    Reset
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div className={classes.closingButtonContainer}>
+              <ClosingButton
+                className={classes.closingButton}
+                onClick={handleCloseModal}
+              />
+            </div>
+          </div>
+        }
+      </Modal>
     </Fragment>
   );
 };

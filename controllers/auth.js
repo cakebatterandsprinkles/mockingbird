@@ -222,6 +222,63 @@ exports.postConfirm = (req, res, next) => {
   }
 };
 
+exports.postResetRequest = (req, res, next) => {
+  const { email } = req.body;
+
+  if (email === "") {
+    return res.status(400).send("Email cannot be empty");
+  }
+
+  User.findOne({
+    email: email,
+  }).then((userInfo) => {
+    if (!userInfo) {
+      return res.status(400).send("User does not exist.");
+    }
+
+    const resetToken = generateRandomString(30);
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 1);
+
+    userInfo.resetToken = resetToken;
+    userInfo.resetTokenExpiration = expirationDate;
+    userInfo
+      .save()
+      .then(() => {
+        const resetLinkURL = `http://localhost:3000/reset-password?email=${email}&token=${resetToken}`;
+
+        sgMail
+          .send({
+            from: "mockingbird@yagmurcetintas.com",
+            personalizations: [
+              {
+                to: { email: email },
+                dynamicTemplateData: {
+                  linkURL: resetLinkURL,
+                },
+              },
+            ],
+            templateId: "d-dd01d0c5f77c4efda65a0c8d26edd4e9",
+          })
+          .then(
+            () => {},
+            (error) => {
+              console.error(error);
+
+              if (error.response) {
+                console.error(error.response.body);
+              }
+            }
+          );
+        return res.status(200).send("An email has been sent!");
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send("Server Error");
+      });
+  });
+};
+
 exports.postResetPassword = (req, res, next) => {
   const { email, token, password, repeatPassword } = req.body;
 
