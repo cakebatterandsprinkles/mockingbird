@@ -25,7 +25,7 @@ router.post("/confirm", authController.postConfirm);
 // @desc   Make a password reset request
 // @access public
 
-router.post("/reset-request", authController.postResetPequest);
+router.post("/reset-request", authController.postResetRequest);
 
 // @route  POST /reset-password
 // @desc   Reset User Password
