@@ -49,7 +49,7 @@ const App = () => {
             component={isAuthenticated ? UserMainPage : LandingMain}
           />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/reset-password" component={ResetPassword} />
+          <Route path="/reset-password" component={ResetPassword} />
           <Route exact path="/login" component={Login} />
           {isAuthenticated ? (
             <Route exact path="/calendar" component={Calendar} />

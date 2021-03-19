@@ -65,9 +65,7 @@ const SignUpForm = (props) => {
           <p className={classes.heading}>Sign Up</p>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div
-            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-          >
+          <div className={classes.formGroupContainer}>
             <label>Email:</label>
             <input
               type="email"
@@ -75,12 +73,10 @@ const SignUpForm = (props) => {
               ref={register({ required: true })}
             ></input>
             <div className={classes.subTextContainer}>
-              <p className={classes.subText}>
-                Note: You will need to verify this. Make it real.
-              </p>
+              Note: You will need to verify this. Make it real.
             </div>
             {errors.email && (
-              <span className={classes.error}>Email is required.</span>
+              <div className={classes.error}>Email is required.</div>
             )}
           </div>
           <div className={classes.formGroupContainer}>
@@ -96,14 +92,12 @@ const SignUpForm = (props) => {
                 }}
               ></input>
               {errors.password && errors.password.type === "required" && (
-                <span className={classes.error}>
-                  Password field is required.
-                </span>
+                <div className={classes.error}>Password field is required.</div>
               )}
               {errors.password && errors.password.type === "minLength" && (
-                <span className={classes.error}>
+                <div className={classes.error}>
                   The password has to be at least 8 characters long.
-                </span>
+                </div>
               )}
               {passwordRef.current?.type === "password" ? (
                 <EyeSlash
@@ -132,21 +126,19 @@ const SignUpForm = (props) => {
               ></input>
               {errors.repeatPassword &&
                 errors.repeatPassword.type === "required" && (
-                  <span className={classes.error}>
+                  <div className={classes.error}>
                     Repeat password field is required.
-                  </span>
+                  </div>
                 )}
               {errors.repeatPassword &&
                 errors.repeatPassword.type === "minLength" && (
-                  <span className={classes.error}>
+                  <div className={classes.error}>
                     The password has to be at least 8 characters long.
-                  </span>
+                  </div>
                 )}
               {errors.repeatPassword &&
                 errors.repeatPassword.type === "validate" && (
-                  <span className={classes.error}>
-                    The passwords must match.
-                  </span>
+                  <div className={classes.error}>The passwords must match.</div>
                 )}
               {repeatPasswordRef.current?.type === "password" ? (
                 <EyeSlash
