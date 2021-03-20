@@ -21,11 +21,9 @@ const LoginForm = () => {
   const passwordRef = useRef(null);
 
   const handleShowPassword = () => {
-    if (passwordRef.current.type === "password") {
-      setInputType("text");
-    } else if (passwordRef.current.type === "text") {
-      setInputType("password");
-    }
+    setInputType((currentState) =>
+      currentState === "text" ? "password" : "text"
+    );
   };
 
   const handleOpenModal = () => setShowModal(true);
@@ -113,7 +111,7 @@ const LoginForm = () => {
                   Password field is required.
                 </span>
               )}
-              {passwordRef.current?.type === "password" ? (
+              {inputType ? (
                 <EyeSlash
                   className={classes.eyeslash}
                   onClick={handleShowPassword}

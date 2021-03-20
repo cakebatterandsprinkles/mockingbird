@@ -17,19 +17,15 @@ const SignUpForm = (props) => {
   const repeatPasswordRef = useRef(null);
 
   const handleShowPassword = () => {
-    if (passwordRef.current.type === "password") {
-      setInputType("text");
-    } else if (passwordRef.current.type === "text") {
-      setInputType("password");
-    }
+    setInputType((currentState) =>
+      currentState === "text" ? "password" : "text"
+    );
   };
 
   const handleShowPasswordRepeat = () => {
-    if (repeatPasswordRef.current.type === "password") {
-      setInputTypeRepeat("text");
-    } else if (repeatPasswordRef.current.type === "text") {
-      setInputTypeRepeat("password");
-    }
+    setInputTypeRepeat((currentState) =>
+      currentState === "text" ? "password" : "text"
+    );
   };
 
   const onSubmit = (data, e) => {
@@ -99,7 +95,7 @@ const SignUpForm = (props) => {
                   The password has to be at least 8 characters long.
                 </div>
               )}
-              {passwordRef.current?.type === "password" ? (
+              {inputType === "password" ? (
                 <EyeSlash
                   className={classes.eyeslash}
                   onClick={handleShowPassword}
@@ -140,7 +136,7 @@ const SignUpForm = (props) => {
                 errors.repeatPassword.type === "validate" && (
                   <div className={classes.error}>The passwords must match.</div>
                 )}
-              {repeatPasswordRef.current?.type === "password" ? (
+              {inputTypeRepeat === "password" ? (
                 <EyeSlash
                   className={classes.eyeslash}
                   onClick={handleShowPasswordRepeat}
