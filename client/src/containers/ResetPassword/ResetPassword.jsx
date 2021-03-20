@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Fragment, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { toast } from "react-toastify";
 import { ReactComponent as Eye } from "../../assets/eye.svg";
 import { ReactComponent as EyeSlash } from "../../assets/eyeSlash.svg";
@@ -10,6 +10,7 @@ import classes from "./ResetPassword.module.css";
 
 const ResetPassword = () => {
   const history = useHistory();
+  let location = new URLSearchParams(useLocation().search);
   const { register, handleSubmit, errors, watch } = useForm();
   const [inputType, setInputType] = useState("password");
   const [inputTypeRepeat, setInputTypeRepeat] = useState("password");
@@ -37,6 +38,8 @@ const ResetPassword = () => {
       .post("/reset-password", {
         password: data.password,
         repeatPassword: data.repeatPassword,
+        email: location.get("email"),
+        token: location.get("token"),
       })
       .then((response) => {
         if (response.status === 200) {
