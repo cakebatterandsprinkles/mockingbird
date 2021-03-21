@@ -1,12 +1,17 @@
 .bird {
   height: 2rem;
   width: auto;
-  padding-right: .5rem;
+  padding-right: 0.5rem;
+}
+
+.modeIcon {
+  height: 1.5rem;
+  width: auto;
 }
 
 .logoText {
   color: var(--black);
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   font-weight: bold;
 }
 
@@ -18,10 +23,9 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: .5rem;
-  text-decoration:none;
+  padding: 0.5rem;
+  text-decoration: none;
 }
-
 
 .flexContainerRowRight {
   display: flex;
@@ -31,20 +35,19 @@
 }
 
 .changeColorBtn {
-  font-size: 2rem;
   margin-right: 1rem;
   cursor: pointer;
   color: var(--darkgray) !important;
 }
 
 .link {
-  padding: 0.4rem 1rem .5rem 1rem; 
+  padding: 0.4rem 1rem 0.5rem 1rem;
   border: 1px solid var(--black);
   margin-right: 2rem;
   border-radius: 20px;
   text-decoration: none;
   color: var(--black);
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .link:hover,
@@ -52,7 +55,7 @@
 .link:active {
   background-color: var(--yellow);
   transition-duration: 0.3s;
-} 
+}
 
 /* Xsmall Screens */
 @media (max-width: 600px) {
@@ -69,14 +72,18 @@
   .changeColorBtn {
     font-size: 1.75rem;
     padding: 0.25rem;
-    margin-right: .25rem;
-  } 
+    margin-right: 0.25rem;
+  }
 
   .bird {
-  height: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .modeIcon {
+    height: 1.25rem;
   }
 
   .logoText {
-    font-size:.75rem;
+    font-size: 0.75rem;
   }
 }

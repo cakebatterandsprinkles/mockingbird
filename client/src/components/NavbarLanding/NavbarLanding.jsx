@@ -1,11 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/mockingbird-logo.png";
+import { ReactComponent as Moon } from "../../assets/moon.svg";
+import { ReactComponent as Sun } from "../../assets/sun.svg";
 import Button from "../Button/Button";
 import classes from "./NavbarLanding.module.css";
 
 class NavbarLanding extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      lightMode: true,
+    };
+  }
+
   reverseColor = () => {
+    this.state.lightMode
+      ? this.setState({ lightMode: false })
+      : this.setState({ lightMode: true });
     const page = document.body;
     const hc = document.querySelectorAll(".headingContainer");
     page.classList.toggle("dark-bg");
@@ -15,6 +27,7 @@ class NavbarLanding extends Component {
       hc.classList.toggle("light-border");
     });
   };
+
   render() {
     return (
       <div className={classes.flexContainerRow}>
@@ -26,7 +39,11 @@ class NavbarLanding extends Component {
           <Button name="Sign Up" link="/signup" buttonStyle={classes.link} />
           <Button name="Login" link="/login" buttonStyle={classes.link} />
           <div className={classes.changeColorBtn} onClick={this.reverseColor}>
-            <p>◐</p>
+            {this.state.lightMode ? (
+              <Moon className={classes.modeIcon} />
+            ) : (
+              <Sun className={classes.modeIcon} />
+            )}
           </div>
         </div>
       </div>
