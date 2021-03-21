@@ -5,6 +5,7 @@ import CloseButton from "../../assets/closeButton.png";
 import Pentagon from "../../assets/pentagon.png";
 import Plus from "../../assets/plus.png";
 import Rectangle from "../../assets/rectangle.png";
+import { ReactComponent as Sparkles } from "../../assets/sparkles.svg";
 import Star from "../../assets/star.png";
 import Triangle from "../../assets/triangle.png";
 import LegendFooter from "../../components/LegendFooter/LegendFooter";
@@ -372,7 +373,10 @@ class Calendar extends Component {
                               <div
                                 className={classes.entry}
                                 key={`${item}-${index}`}
-                              >{`𐡸 ${item}`}</div>
+                              >
+                                <Sparkles className={classes.sparkles} />{" "}
+                                {`${item}`}
+                              </div>
                             ))}
                     </div>
                   </div>
