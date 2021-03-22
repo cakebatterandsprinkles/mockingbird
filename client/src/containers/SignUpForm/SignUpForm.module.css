@@ -163,32 +163,6 @@ input:focus,
   position: relative;
 }
 
-.eyeslash,
-.eye {
-  position: absolute;
-  width: 2rem;
-  height: 2.1rem;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding: 0 0.5rem;
-  margin-left: 0.5rem;
-  background-color: var(--snow);
-  color: var(--black);
-  border: 1px solid var(--black);
-}
-
-.eyeslash:hover,
-.eye:hover {
-  background: var(--dirtysnow);
-}
-
 @media (max-width: 1200px) {
   .mainContainer {
     width: 50%;
@@ -224,7 +198,7 @@ input:focus,
   }
 
   .formGroupContainer {
-    height: 5rem;
+    height: 5.5rem;
   }
 
   .formGroupContainer label {
@@ -234,14 +208,11 @@ input:focus,
   .formGroupContainer input {
     padding: 0.4rem;
     font-size: 0.8rem;
+    margin-bottom: 0.25rem;
   }
 
-  .eye,
-  .eyeslash {
-    height: 1.85rem;
-  }
-
-  .subText {
+  .subTextContainer {
     font-size: 0.75rem;
+    margin-bottom: 0.25rem;
   }
 }
