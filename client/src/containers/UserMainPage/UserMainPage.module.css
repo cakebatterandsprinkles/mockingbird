@@ -208,7 +208,7 @@
 
   .buttonContainer {
     margin-top: 0.5rem;
-    margin-bottom: 8rem;
+    margin-bottom: 6rem;
   }
 
   .footer {
@@ -219,10 +219,6 @@
 @media (max-width: 600px) {
   .box {
     height: auto;
-  }
-
-  .buttonContainer {
-    margin-bottom: 10rem;
   }
 
   .headerContainer {
@@ -250,10 +246,6 @@
 }
 
 @media (max-width: 400px) {
-  .buttonContainer {
-    margin-bottom: 10rem;
-  }
-
   .headerContainer {
     width: 100%;
     font-size: 0.85rem;
