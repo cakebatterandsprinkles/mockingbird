@@ -1,10 +1,4 @@
-const validationSignUp = (name, email, password, repeatPassword) => {
-  if (name.length < 2) {
-    return "Username must be at least 2 characters long.";
-  }
-  if (name.length > 25) {
-    return "Username must be shorter than 25 characters.";
-  }
+const validationSignUp = (email, password, repeatPassword) => {
   if (!email.includes("@")) {
     return "Please enter a valid e-mail address";
   }
