@@ -11,7 +11,6 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 exports.postSignup = (req, res, next) => {
   const { email, password, repeatPassword } = req.body;
-
   const validationResult = validationSignUp(email, password, repeatPassword);
 
   if (validationResult !== "Success") {
@@ -112,8 +111,8 @@ exports.postLogin = (req, res, next) => {
             return res.status(400).send("Wrong password.");
           }
 
-          generateTokenAndSetCookie(res, userInfo.id, userInfo.name);
-          res.json({ id: userInfo.id, name: userInfo.name });
+          generateTokenAndSetCookie(res, userInfo.id);
+          res.json({ id: userInfo.id });
         });
       })
       .catch((err) => {
@@ -283,7 +282,7 @@ exports.postResetPassword = (req, res, next) => {
 };
 
 exports.postSettings = (req, res, next) => {
-  const { name, currentPassword, newPassword, repeatNewPassword } = req.body;
+  const { currentPassword, newPassword, repeatNewPassword } = req.body;
 
   if (repeatNewPassword !== "" || currentPassword !== "") {
     if (newPassword !== repeatNewPassword) {
@@ -322,7 +321,6 @@ exports.postSettings = (req, res, next) => {
           bcrypt
             .hash(newPassword, salt)
             .then((hashedPassword) => {
-              userInfo.name = name;
               userInfo.password = hashedPassword;
               userInfo.save();
             })
@@ -341,7 +339,7 @@ exports.postSettings = (req, res, next) => {
 };
 
 exports.getMe = (req, res, next) => {
-  User.findById({ _id: req.user.id }, "name", function (err, user) {
+  User.findById({ _id: req.user.id }, function (err, user) {
     if (err) {
       return res.status(500).json(err.toString());
     }

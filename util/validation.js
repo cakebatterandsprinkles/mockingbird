@@ -8,7 +8,6 @@ const validationSignUp = (email, password, repeatPassword) => {
   if (password !== repeatPassword) {
     return "Entered passwords should match!";
   }
-
   return "Success";
 };
 

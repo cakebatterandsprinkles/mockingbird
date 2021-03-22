@@ -51,6 +51,7 @@ const App = () => {
           <Route exact path="/signup" component={Signup} />
           <Route path="/reset-password" component={ResetPassword} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/confirm" component={ConfirmEmail} />
           {isAuthenticated ? (
             <Route exact path="/calendar" component={Calendar} />
           ) : (
@@ -66,7 +67,6 @@ const App = () => {
           ) : (
             <Redirect to="/login" />
           )}
-          <Route exact path="/confirm" component={ConfirmEmail} />
           <Route path="/" component={Error404} />
         </Switch>
         <ToastContainer
