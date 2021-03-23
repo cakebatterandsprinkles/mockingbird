@@ -56,6 +56,15 @@ class NavbarUser extends Component {
           >
             <p>Calendar</p>
           </NavLink>
+          <NavLink
+            className={classes.navbarLink}
+            to="/reminders"
+            activeStyle={{
+              borderBottom: "2px solid #aa82fe",
+            }}
+          >
+            <p>Reminders</p>
+          </NavLink>
           <div className={classes.dropdown}>
             <img
               src={SettingsIcon}

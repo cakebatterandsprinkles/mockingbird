@@ -10,6 +10,7 @@ import NavbarUser from "./components/NavbarUser/NavbarUser";
 import Calendar from "./containers/Calendar/Calendar";
 import ConfirmEmail from "./containers/ConfirmEmail/ConfirmEmail";
 import Login from "./containers/LoginForm/LoginForm";
+import Reminders from "./containers/Reminders/Reminders";
 import ResetPassword from "./containers/ResetPassword/ResetPassword";
 import Settings from "./containers/Settings/Settings";
 import Signup from "./containers/SignUpForm/SignUpForm";
@@ -59,6 +60,11 @@ const App = () => {
           )}
           {isAuthenticated ? (
             <Route exact path="/today" component={UserMainPage} />
+          ) : (
+            <Redirect to="/login" />
+          )}
+          {isAuthenticated ? (
+            <Route exact path="/reminders" component={Reminders} />
           ) : (
             <Redirect to="/login" />
           )}
