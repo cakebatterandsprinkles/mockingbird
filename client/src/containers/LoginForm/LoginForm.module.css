@@ -1,3 +1,19 @@
+:global(.dark-bg) .headingContainer {
+  border-bottom: 2px solid var(--offwhite);
+}
+
+:global(.dark-bg) .heading {
+  color: var(--offwhite);
+}
+
+:global(.dark-bg) .formGroupContainer label {
+  color: var(--offwhite);
+}
+
+:global(.dark-bg) .resetPasswordLink {
+  color: yellow;
+}
+
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -46,22 +62,6 @@
   margin-bottom: 1rem;
 }
 
-:global(.dark-bg) .headingContainer {
-  border-bottom: 2px solid var(--offwhite);
-}
-
-:global(.dark-bg) .heading {
-  color: var(--offwhite);
-}
-
-:global(.dark-bg) .formGroupContainer label {
-  color: var(--offwhite);
-}
-
-:global(.dark-bg) .resetPasswordLink {
-  color: yellow;
-}
-
 .heading {
   font-family: var(--headingFont);
   font-size: 2rem;
@@ -104,14 +104,15 @@
 .formGroupContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 4rem;
 }
 
 .formGroupContainer input {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-  font-family: var(--headingFont);
   width: 100%;
-  color: var(--black);
+  color: var(--darkgray);
   border-radius: 10px;
   border: 1px solid var(--darkgray);
   margin-bottom: 0.5rem;
@@ -122,8 +123,10 @@
   display: flex;
   align-items: center;
   font-size: 1rem;
+  font-weight: bold;
+  font-family: var(--headingFont);
   width: 100%;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   color: var(--black);
 }
 
@@ -143,6 +146,7 @@
 .error {
   color: var(--red);
   font-size: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .modalText {
@@ -268,7 +272,7 @@
 
   .mainContainer {
     width: 80%;
-    padding-top: 8rem;
+    padding-top: 5rem;
   }
 
   .heading {
@@ -281,18 +285,18 @@
     margin-bottom: 1.5rem;
   }
 
-  .formGroupContainer label {
-    font-size: 0.9rem;
+  .formGroupContainer {
+    height: 5.5rem;
   }
 
-  .eye,
-  .eyeslash {
-    height: 1.9rem;
+  .formGroupContainer label {
+    font-size: 0.9rem;
   }
 
   .formGroupContainer input {
     padding: 0.4rem;
     font-size: 0.8rem;
+    margin-bottom: 0.25rem;
   }
 
   .eye,
