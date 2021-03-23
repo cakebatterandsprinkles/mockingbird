@@ -1,47 +1,35 @@
 import axios from "axios";
-import React, { Component } from "react";
+import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import Dots from "../../components/Dots/Dots";
 import PasswordInput from "../PasswordInput/PasswordInput";
 import classes from "./Settings.module.css";
 
-class Settings extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentPassword: "",
-      newPassword: "",
-      repeatNewPassword: "",
-    };
-    this.submitForm = this.submitForm.bind(this);
-  }
+const Settings = () => {
+  const history = useHistory();
+  const methods = useForm();
+  const { handleSubmit } = methods;
 
-  handleCurrentPassword = (newValue) => {
-    this.setState({ currentPassword: newValue });
-  };
-
-  handleNewPassword = (newValue) => {
-    this.setState({ newPassword: newValue });
-  };
-
-  handleNewPasswordRepeat = (newValue) => {
-    this.setState({ repeatNewPassword: newValue });
-  };
-
-  submitForm = (event) => {
+  const onSubmit = (data, event) => {
     event.preventDefault();
     axios
       .post(
         "/settings",
         {
-          currentPassword: this.state.currentPassword,
-          newPassword: this.state.newPassword,
-          repeatNewPassword: this.state.repeatNewPassword,
+          currentPassword: data.currentPassword,
+          newPassword: data.password,
+          repeatNewPassword: data.repeatPassword,
         },
         { withCredentials: true }
       )
       .then((res) => {
         if (res.status === 200) {
+          event.target.reset();
+          history.push({
+            pathname: "/today",
+          });
           toast.success("Password change was successful.");
         }
       })
@@ -53,26 +41,35 @@ class Settings extends Component {
       });
   };
 
-  render() {
-    return (
-      <div className={classes.mainContainer}>
-        <Dots />
-        <div className={classes.headingContainer}>
-          <p className={classes.heading}>Settings</p>
-        </div>
-        <form onSubmit={this.submitForm}>
+  return (
+    <div className={classes.mainContainer}>
+      <Dots />
+      <div className={classes.headingContainer}>
+        <p className={classes.heading}>Settings</p>
+      </div>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={classes.inputWrapper}>
             <PasswordInput
-              label="Current Password"
-              handleChange={this.handleCurrentPassword}
+              label="Current password:"
+              errorRequired={true}
+              errorMinLength={true}
+              errorValidate={false}
+              name="currentPassword"
             />
             <PasswordInput
-              label="New Password"
-              handleChange={this.handleNewPassword}
+              label="Password:"
+              errorRequired={true}
+              errorMinLength={true}
+              errorValidate={false}
+              name="password"
             />
             <PasswordInput
-              label="Repeat New Password"
-              handleChange={this.handleNewPasswordRepeat}
+              label="Repeat Password:"
+              errorRequired={true}
+              errorMinLength={true}
+              errorValidate={true}
+              name="repeatPassword"
             />
           </div>
           <div className={classes.btnWrapper}>
@@ -81,9 +78,9 @@ class Settings extends Component {
             </button>
           </div>
         </form>
-      </div>
-    );
-  }
-}
+      </FormProvider>
+    </div>
+  );
+};
 
 export default Settings;
