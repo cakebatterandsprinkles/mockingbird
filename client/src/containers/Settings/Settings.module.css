@@ -1,3 +1,11 @@
+:global(.dark-bg) .headingContainer {
+  border-bottom: 2px solid var(--offwhite);
+}
+
+:global(.dark-bg) .heading {
+  color: var(--offwhite);
+}
+
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -10,22 +18,6 @@
 .headingContainer {
   border-bottom: 2px solid var(--black);
   margin-bottom: 2rem;
-}
-
-:global(.dark-bg) .headingContainer {
-  border-bottom: 2px solid var(--offwhite);
-}
-
-:global(.dark-bg) .heading {
-  color: var(--offwhite);
-}
-
-:global(.dark-bg) .formGroupContainer label {
-  color: var(--offwhite);
-}
-
-:global(.dark-bg) .resetPasswordLink {
-  color: yellow;
 }
 
 .heading {
@@ -84,17 +76,10 @@
 }
 
 @media (max-width: 600px) {
-  .link {
-    padding: 0.5rem 0.8rem;
-  }
-
-  .modal {
-    padding: 2rem 1rem 1.5rem 2rem;
-  }
-
   .mainContainer {
+    height: 85vh;
     width: 80%;
-    padding-top: 8rem;
+    padding-top: 4rem;
   }
 
   .heading {
@@ -107,12 +92,7 @@
     margin-bottom: 1.5rem;
   }
 
-  .formGroupContainer label {
-    font-size: 0.9rem;
-  }
-
-  .formGroupContainer input {
-    padding: 0.4rem;
-    font-size: 0.8rem;
+  .btnWrapper {
+    margin-top: 0.75rem;
   }
 }

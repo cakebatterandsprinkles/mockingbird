@@ -1,3 +1,11 @@
+:global(.dark-bg) .headingContainer {
+  border-bottom: 2px solid white;
+}
+
+:global(.dark-bg) .heading {
+  color: var(--offwhite);
+}
+
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -11,18 +19,6 @@
   width: 40%;
   border-bottom: 2px solid var(--black);
   margin-bottom: 2rem;
-}
-
-:global(.dark-bg) .headingContainer {
-  border-bottom: 2px solid white;
-}
-
-:global(.dark-bg) .heading {
-  color: var(--offwhite);
-}
-
-:global(.dark-bg) .formGroupContainer label {
-  color: var(--offwhite);
 }
 
 .heading {
