@@ -21,4 +21,16 @@ router.post("/today", verifyToken, entryController.postToday);
 
 router.get("/calendar", verifyToken, entryController.getCalendar);
 
+// @route  GET /reminders
+// @desc   Get the user's reminders
+// @access private
+
+router.get("/reminders", verifyToken, entryController.getReminders);
+
+// @route  POST /reminders
+// @desc   Create or update a reminder
+// @access private
+
+router.post("/reminders", verifyToken, entryController.postReminders);
+
 module.exports = router;

@@ -19,6 +19,8 @@ const Reminders = () => {
   return (
     <div className={classes.mainContainer}>
       <div className={classes.mainWrapper}>
+        <div>Reminders:</div>
+
         <div className={classes.footer}>
           <div className={classes.footerText}>
             <p>

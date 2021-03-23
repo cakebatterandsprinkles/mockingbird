@@ -1,4 +1,5 @@
 const Entry = require("../models/JournalEntry.js");
+const Reminder = require("../models/Reminder.js");
 
 exports.postToday = (req, res, next) => {
   const { entry, date } = req.body;
@@ -46,4 +47,29 @@ exports.getCalendar = (req, res, next) => {
   })
     .then((entries) => res.json(entries))
     .catch((err) => res.status(500).send(err));
+};
+
+exports.getReminders = (req, res, next) => {
+  Reminder.find({
+    user: req.user.id,
+  })
+    .then((reminders) => res.json(reminders))
+    .catch((err) => res.status(500).send(err));
+};
+
+exports.postReminders = (req, res, next) => {
+  const { label, ...reminderDetails } = req.body;
+  const newReminder = { label, ...reminderDetails, user: req.user.id };
+  Reminder.findOneAndUpdate({ user: req.user.id }, newReminder, {
+    new: true,
+    setDefaultsOnInsert: true,
+    upsert: true,
+    useFindAndModify: false,
+  })
+    .then((label, ...reminderDetails) => {
+      res.json(label, ...reminderDetails);
+    })
+    .catch((err) => {
+      res.status(500).send(err.toString());
+    });
 };
