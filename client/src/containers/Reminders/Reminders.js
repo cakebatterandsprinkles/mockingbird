@@ -1,6 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import Modal from "react-modal";
 import { toast } from "react-toastify";
+import { ReactComponent as ClosingButton } from "../../assets/closeButton.svg";
+import { ReactComponent as AddButton } from "../../assets/pluscircle.svg";
 import quotes from "../../data/quotes.json";
 import classes from "./Reminders.module.css";
 
@@ -8,6 +11,15 @@ const Reminders = () => {
   const [footerText, setFooterText] = useState("");
   const [author, setAuthor] = useState("");
   const [reminders, setReminders] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [label, setLabel] = useState("");
+  const [text, setText] = useState("");
+  const [timeInterval, setTimeInterval] = useState(null);
+  const [startTime, setStartTime] = useState("");
+  const [finishTime, setFinishTime] = useState(null);
+
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   const selectFooterText = (array) => {
     const randomNum = Math.floor(Math.random() * array.length);
@@ -26,7 +38,8 @@ const Reminders = () => {
       .catch((err) => console.log(err));
   };
 
-  const postReminder = (reminderData) => {
+  const handleSubmit = (reminderData, event) => {
+    event.preventDefault();
     axios
       .post("/reminder", reminderData)
       .then((response) => {
@@ -48,26 +61,148 @@ const Reminders = () => {
   }, []);
 
   return (
-    <div className={classes.mainContainer}>
-      <div className={classes.mainWrapper}>
-        <div className={classes.contentWrapper}>
-          <div className={classes.header}>Reminders: {reminders.length}</div>
-          {reminders.length ? (
-            <div className={classes.information}></div>
-          ) : (
-            reminders.map((r) => <div>{r.label}</div>)
-          )}
-        </div>
-        <div className={classes.footer}>
-          <div className={classes.footerText}>
-            <p>
-              {footerText}
-              <span className={classes.footerAuthor}> - {author}</span>
-            </p>
+    <Fragment>
+      <div className={classes.mainContainer}>
+        <div className={classes.mainWrapper}>
+          <div className={classes.contentWrapper}>
+            <div className={classes.headerContainer}>
+              <p className={classes.header}>Reminders: {reminders.length}</p>
+              <AddButton
+                className={classes.addIcon}
+                onClick={handleOpenModal}
+              />
+            </div>
+            {reminders.length ? (
+              <Fragment>
+                <div className={classes.information}></div>
+              </Fragment>
+            ) : (
+              reminders.map((r) => (
+                <Fragment>
+                  <div>{r.label}</div>
+                </Fragment>
+              ))
+            )}
+          </div>
+          <div className={classes.footer}>
+            <div className={classes.footerText}>
+              <p>
+                {footerText}
+                <span className={classes.footerAuthor}> - {author}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Modal
+        isOpen={showModal}
+        onRequestClose={handleCloseModal}
+        className={classes.modal}
+        overlayClassName={classes.overlay}
+        ariaHideApp={false}
+      >
+        {
+          <div className={classes.modalMainContainer}>
+            <div className={classes.modalContentWrapper}>
+              <div className={classes.modalHeadingContainer}>
+                <p className={classes.modalHeading}>Add a reminder:</p>
+              </div>
+              <form className={classes.loginForm} onSubmit={handleSubmit}>
+                <div className={classes.formGroupContainer}>
+                  <label htmlFor="reminder-label">Label:</label>
+                  <input
+                    type="text"
+                    name="reminder-label"
+                    id="reminder-label"
+                    placeholder="e.g. Posture Check 🔥"
+                    value={label}
+                    onChange={(e) => {
+                      setLabel(e.target.value);
+                    }}
+                    required
+                  ></input>
+                </div>
+                <div className={classes.formGroupContainer}>
+                  <label htmlFor="reminder-text">Reminder Message:</label>
+                  <p className={classes.explanation}>
+                    The app will use this message to notify you.
+                  </p>
+                  <input
+                    type="text"
+                    name="reminder-text"
+                    id="reminder-text"
+                    placeholder="e.g. Fix your posture & get up and walk for a couple of minutes!"
+                    value={text}
+                    onChange={(e) => {
+                      setText(e.target.value);
+                    }}
+                    required
+                  ></input>
+                </div>
+                <div className={classes.formGroupContainer}>
+                  <label htmlFor="reminder-time-interval">Time Interval:</label>
+                  <p className={classes.explanation}>
+                    Time interval should be given as minutes.
+                  </p>
+                  <input
+                    type="number"
+                    name="reminder-time-interval"
+                    id="reminder-time-interval"
+                    placeholder="60"
+                    value={timeInterval}
+                    onChange={(e) => {
+                      setTimeInterval(e.target.value);
+                    }}
+                    min="1"
+                    max="720"
+                    required
+                  ></input>
+                </div>
+                <div className={classes.formGroupContainer}>
+                  <label htmlFor="start-time">Starting at:</label>
+                  <input
+                    type="time"
+                    id="start-time"
+                    name="start-time"
+                    value={startTime}
+                    placeholder="08:30 AM"
+                    onChange={(e) => {
+                      setStartTime(e.target.value);
+                    }}
+                    required
+                  ></input>
+                </div>
+                <div className={classes.formGroupContainer}>
+                  <label htmlFor="finish-time">Finishing at:</label>
+                  <input
+                    type="time"
+                    id="finish-time"
+                    name="finish-time"
+                    value={finishTime}
+                    placeholder="05:30 PM"
+                    onChange={(e) => {
+                      setFinishTime(e.target.value);
+                    }}
+                    required
+                  ></input>
+                </div>
+                <div className={classes.btnWrapper}>
+                  <button type="submit" className={classes.btn}>
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div className={classes.closingButtonContainer}>
+              <ClosingButton
+                className={classes.closingButton}
+                onClick={handleCloseModal}
+              />
+            </div>
+          </div>
+        }
+      </Modal>
+    </Fragment>
   );
 };
 

@@ -24,10 +24,6 @@ const ReminderSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  exactTimePoints: {
-    type: Array,
-    default: [],
-  },
   date: {
     type: Date,
     default: new Date().toISOString().substring(0, 10),
