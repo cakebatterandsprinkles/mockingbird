@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import { toast } from "react-toastify";
 import { ReactComponent as ClosingButton } from "../../assets/closeButton.svg";
 import { ReactComponent as AddButton } from "../../assets/pluscircle.svg";
+import Dots from "../../components/Dots/Dots.jsx";
 import quotes from "../../data/quotes.json";
 import classes from "./Reminders.module.css";
 
@@ -64,6 +65,7 @@ const Reminders = () => {
     <Fragment>
       <div className={classes.mainContainer}>
         <div className={classes.mainWrapper}>
+          <Dots />
           <div className={classes.contentWrapper}>
             <div className={classes.headerContainer}>
               <p className={classes.header}>Reminders: {reminders.length}</p>
@@ -73,15 +75,28 @@ const Reminders = () => {
               />
             </div>
             {reminders.length ? (
-              <Fragment>
-                <div className={classes.information}></div>
-              </Fragment>
-            ) : (
               reminders.map((r) => (
                 <Fragment>
                   <div>{r.label}</div>
                 </Fragment>
               ))
+            ) : (
+              <Fragment>
+                <div className={classes.information}>
+                  This section of the app exists for you to build healthier
+                  habits. If you need to drink more water, check your posture,
+                  or get up and walk around every hour, and you need a friendly
+                  reminder to do so, you can set a reminder for yourself from
+                  here.
+                </div>
+                <div className={classes.information}>
+                  Click on the plus icon to add a reminder.
+                </div>
+                <div className={classes.information}>
+                  Note: For this technology to work, you need to keep this app
+                  open in one of your tabs.
+                </div>
+              </Fragment>
             )}
           </div>
           <div className={classes.footer}>
