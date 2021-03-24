@@ -264,6 +264,30 @@
 }
 
 @media (max-width: 600px) {
+  .modal {
+    padding: 2rem 0.5rem 1rem 1rem;
+  }
+
+  .headingContainer {
+    width: 40%;
+    border-bottom: 0.09rem solid var(--black);
+    margin-bottom: 1.5rem;
+  }
+
+  .formGroupContainer {
+    height: 5.5rem;
+  }
+
+  .formGroupContainer label {
+    font-size: 0.9rem;
+  }
+
+  .formGroupContainer input {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+  }
+
   .labelWrapper,
   .timeWrapper {
     width: 100%;
