@@ -33,4 +33,10 @@ router.get("/reminders", verifyToken, entryController.getReminders);
 
 router.post("/reminders", verifyToken, entryController.postReminders);
 
+// @route  DELETE /reminders
+// @desc   Delete the reminder with the id
+// @access private
+
+router.delete("/reminders", verifyToken, entryController.deleteReminders);
+
 module.exports = router;

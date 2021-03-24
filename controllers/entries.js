@@ -73,3 +73,9 @@ exports.postReminders = (req, res, next) => {
       res.status(500).send(err.toString());
     });
 };
+
+exports.deleteReminders = (req, res, next) => {
+  Reminder.findOneAndDelete({ user: req.user.id, label: req.body.label })
+    .then(() => res.status(200).end())
+    .catch((err) => res.status(500).send(err));
+};

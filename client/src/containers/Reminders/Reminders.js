@@ -55,6 +55,18 @@ const Reminders = () => {
       .catch((err) => console.log(err));
   };
 
+  const deleteReminder = (label) => {
+    axios
+      .delete("/reminders", { data: { label: label } })
+      .then((res) => {
+        if (res.status === 200) {
+          toast.warn("You have successfully deleted your reminder.");
+          fetchReminders();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   const onSubmit = (reminderData, event) => {
     event.preventDefault();
     console.log(reminderData);
@@ -62,7 +74,7 @@ const Reminders = () => {
       .post("/reminders", reminderData)
       .then((response) => {
         if (response.status === 200) {
-          toast.warn("Awesome! Your new reminder is set.");
+          toast.success("Awesome! Your new reminder is set.");
           fetchReminders();
           handleCloseModal().then(() => inputCleanup());
         }
@@ -117,7 +129,10 @@ const Reminders = () => {
                         {r.timeInterval} minutes
                       </div>
                     </div>
-                    <ClosingButton className={classes.closingButton} />
+                    <ClosingButton
+                      className={classes.closingButton}
+                      onClick={() => deleteReminder(r.label)}
+                    />
                   </div>
                 </div>
               ))
