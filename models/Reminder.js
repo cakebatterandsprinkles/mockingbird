@@ -13,8 +13,8 @@ const ReminderSchema = new mongoose.Schema({
     default: "",
   },
   timeInterval: {
-    type: Number,
-    default: 60,
+    type: String,
+    default: "",
   },
   startTime: {
     type: String,

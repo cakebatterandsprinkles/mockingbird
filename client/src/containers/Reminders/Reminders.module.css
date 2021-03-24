@@ -43,6 +43,7 @@
 .closingButton {
   height: 1.5rem;
   width: auto;
+  color: var(--darkgray);
 }
 
 .modalContentWrapper {
@@ -174,12 +175,57 @@
   background-color: var(--offwhite);
   border-radius: 20px;
   cursor: pointer;
+  color: var(--darkgray);
 }
 
 .information {
   font-size: 0.9rem;
   color: var(--darkgray);
   margin-bottom: 0.5rem;
+}
+
+.reminderWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: var(--offwhite);
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.label {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+  color: var(--black);
+}
+
+.text {
+  color: var(--darkgray);
+  font-size: 0.8rem;
+}
+
+.labelWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
+.timeWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 14rem;
+}
+
+.timeWrapper > div {
+  font-size: 0.8rem;
+  margin-right: 1.5rem;
+  color: var(--darkgray);
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .footer {
@@ -213,11 +259,33 @@
   }
 
   .mainWrapper {
-    max-width: 600px;
+    max-width: 1200px;
   }
 }
 
 @media (max-width: 600px) {
+  .labelWrapper,
+  .timeWrapper {
+    width: 100%;
+  }
+
+  .label {
+    font-size: 0.9rem;
+  }
+
+  .text {
+    font-size: 0.7rem;
+  }
+
+  .labelWrapper {
+    margin-right: 0.5rem;
+  }
+
+  .timeWrapper > div {
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+  }
+
   .mainWrapper {
     margin: 2rem 0.5rem;
     padding: 0.5rem;
@@ -231,6 +299,7 @@
   .addIcon {
     width: 1.5rem;
     height: auto;
+    margin-right: 0.5rem;
   }
 
   .footer {
