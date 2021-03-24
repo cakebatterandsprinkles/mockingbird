@@ -13,7 +13,6 @@ const SignUpForm = () => {
   const { register, handleSubmit, errors } = methods;
 
   const onSubmit = (data, e) => {
-    console.log(data);
     axios
       .post("/signup", {
         email: data.email,

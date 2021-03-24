@@ -60,14 +60,14 @@ exports.getReminders = (req, res, next) => {
 exports.postReminders = (req, res, next) => {
   const { label, ...reminderDetails } = req.body;
   const newReminder = { label, ...reminderDetails, user: req.user.id };
-  Reminder.findOneAndUpdate({ user: req.user.id }, newReminder, {
+  Reminder.findOneAndUpdate({ user: req.user.id, label: label }, newReminder, {
     new: true,
     setDefaultsOnInsert: true,
     upsert: true,
     useFindAndModify: false,
   })
-    .then((label, ...reminderDetails) => {
-      res.json(label, ...reminderDetails);
+    .then(() => {
+      res.status(200).end();
     })
     .catch((err) => {
       res.status(500).send(err.toString());
