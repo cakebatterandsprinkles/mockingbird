@@ -11,7 +11,7 @@ import classes from "./Reminders.module.css";
 
 const Reminders = () => {
   const methods = useForm();
-  const { register, handleSubmit, errors } = methods;
+  const { register, handleSubmit } = methods;
   const [footerText, setFooterText] = useState("");
   const [author, setAuthor] = useState("");
   const [reminders, setReminders] = useState([]);
@@ -23,7 +23,20 @@ const Reminders = () => {
   const [finishTime, setFinishTime] = useState("");
 
   const handleOpenModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
+  const handleCloseModal = () => {
+    return new Promise((resolve) => {
+      setShowModal(false);
+      setTimeout(resolve, 1000);
+    });
+  };
+
+  const inputCleanup = () => {
+    setLabel("");
+    setText("");
+    setTimeInterval("");
+    setStartTime("");
+    setFinishTime("");
+  };
 
   const selectFooterText = (array) => {
     const randomNum = Math.floor(Math.random() * array.length);
@@ -49,9 +62,9 @@ const Reminders = () => {
       .post("/reminders", reminderData)
       .then((response) => {
         if (response.status === 200) {
-          event.target.reset();
           toast.warn("Awesome! Your new reminder is set.");
           fetchReminders();
+          handleCloseModal().then(() => inputCleanup());
         }
       })
       .catch((error) => {
@@ -90,7 +103,7 @@ const Reminders = () => {
                     <p className={classes.text}>"{r.text}"</p>
                   </div>
                   <div className={classes.timeWrapper}>
-                    <div>
+                    <div className={classes.timeDataContainer}>
                       <div>
                         <span className={classes.bold}>From: </span>{" "}
                         {r.startTime}
