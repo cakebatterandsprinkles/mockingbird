@@ -39,7 +39,7 @@ exports.postSignup = (req, res, next) => {
             return user.save();
           })
           .then(() => {
-            const confirmationLinkURL = `http://localhost:3000/confirm?email=${encodeURIComponent(
+            const confirmationLinkURL = `https://mockingbird.yagmurcetintas.com/confirm?email=${encodeURIComponent(
               email
             )}&token=${confirmToken}`;
 
@@ -185,7 +185,7 @@ exports.postResetRequest = (req, res, next) => {
     userInfo
       .save()
       .then(() => {
-        const resetLinkURL = `http://localhost:3000/reset-password?email=${encodeURIComponent(
+        const resetLinkURL = `https://mockingbird.yagmurcetintas.com/reset-password?email=${encodeURIComponent(
           email
         )}&token=${resetToken}`;
 
