@@ -198,7 +198,13 @@ const Reminders = (props) => {
   useEffect(() => {
     requestPermission();
     selectFooterText(quotes);
-    fetchReminders();
+    const fetchHandle = setInterval(() => {
+      fetchReminders();
+    }, 60 * 60 * 1000);
+
+    return () => {
+      clearInterval(fetchHandle);
+    };
   }, []);
 
   return (
