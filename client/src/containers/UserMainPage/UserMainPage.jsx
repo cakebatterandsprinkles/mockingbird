@@ -69,7 +69,7 @@ const UserMainPage = () => {
   };
 
   const addEntry = (entry, date) => {
-    fetch("/today", {
+    fetch("/api/today", {
       method: "POST",
       body: JSON.stringify({ entry: entry, date: date }),
       headers: {

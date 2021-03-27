@@ -3,11 +3,11 @@ const router = express.Router();
 const entryController = require("../controllers/entries");
 const verifyToken = require("../middleware/verifyToken");
 
-// @route  GET /today
+// @route  GET /api/today
 // @desc   Get Journal Entries of today, if they are already logged, and you can change them too.
 // @access private
 
-router.get("/today", verifyToken, entryController.getToday);
+router.get("/api/today", verifyToken, entryController.getToday);
 
 // @route  POST /today
 // @desc   Create or update new journal entry of the day
@@ -15,17 +15,17 @@ router.get("/today", verifyToken, entryController.getToday);
 
 router.post("/today", verifyToken, entryController.postToday);
 
-// @route  GET /calendar
+// @route  GET /api/calendar
 // @desc   Get the user's all entries so far
 // @access private
 
-router.get("/calendar", verifyToken, entryController.getCalendar);
+router.get("/api/calendar", verifyToken, entryController.getCalendar);
 
-// @route  GET /reminders
+// @route  GET /api/reminders
 // @desc   Get the user's reminders
 // @access private
 
-router.get("/reminders", verifyToken, entryController.getReminders);
+router.get("/api/reminders", verifyToken, entryController.getReminders);
 
 // @route  POST /reminders
 // @desc   Create or update a reminder

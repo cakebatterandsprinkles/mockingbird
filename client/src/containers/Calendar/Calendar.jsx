@@ -53,7 +53,7 @@ class Calendar extends Component {
   fetchMonthlyEntries() {
     axios
       .get(
-        `/calendar?year=${this.state.year}&month=${
+        `/api/calendar?year=${this.state.year}&month=${
           this.state.month + 1
         }&daysInMonth=${getDaysInMonth(this.state.month, this.state.year)}`
       )

@@ -156,7 +156,7 @@ const Reminders = (props) => {
 
   const fetchReminders = () => {
     axios
-      .get("/reminders")
+      .get("/api/reminders")
       .then((res) => {
         if (res.status === 200) {
           setReminders([...res.data]);
