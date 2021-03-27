@@ -3,7 +3,6 @@ import React, { Fragment, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
-import Notification from "react-web-notification";
 import { ReactComponent as ClosingButton } from "../../assets/closeButton.svg";
 import { ReactComponent as AddButton } from "../../assets/pluscircle.svg";
 import Dots from "../../components/Dots/Dots.jsx";
@@ -17,7 +16,6 @@ const Reminders = (props) => {
   const [author, setAuthor] = useState("");
   const [reminders, setReminders] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [ignore, setIgnore] = useState(true);
   const [label, setLabel] = useState("");
   const [text, setText] = useState("");
   const [timeInterval, setTimeInterval] = useState("");
@@ -93,24 +91,6 @@ const Reminders = (props) => {
     fetchReminders();
   }, []);
 
-  const handleNotSupported = () => {
-    console.log("Web Notifications are not supported in this browser.");
-    setIgnore(true);
-  };
-
-  const handlePermissionGranted = () => {
-    setIgnore(false);
-  };
-
-  const handlePermissionDenied = () => {
-    console.log("User denied permission for notifications.");
-    setIgnore(true);
-  };
-
-  const handleNotificationOnError = (e, tag) => {
-    console.log(e, "Notification error tag:" + tag);
-  };
-
   return (
     <Fragment>
       <div className={classes.mainContainer}>
@@ -154,15 +134,6 @@ const Reminders = (props) => {
                       onClick={() => deleteReminder(r.label)}
                     />
                   </div>
-                  <Notification
-                    ignore={ignore}
-                    notSupported={handleNotSupported}
-                    onPermissionGranted={handlePermissionGranted}
-                    onPermissionDenied={handlePermissionDenied}
-                    onError={handleNotificationOnError}
-                    timeout={r.timeInterval * 60 * 1000}
-                    title={r.text}
-                  />
                 </div>
               ))
             ) : (

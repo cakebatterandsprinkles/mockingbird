@@ -40,9 +40,7 @@
     "mongoose": "^5.11.14",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.17",
-    "nodemailer-sendgrid-transport": "^0.2.0",
-    "react-modal": "^3.12.1",
-    "react-web-notification": "^0.8.0"
+    "nodemailer-sendgrid-transport": "^0.2.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
