@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
@@ -38,6 +38,116 @@ const Reminders = (props) => {
     setFinishTime("");
   };
 
+  const requestPermission = () => {
+    if (window.Notification) {
+      Notification.requestPermission();
+    }
+  };
+
+  const findNotificationTimes = (reminder) => {
+    const [startHour, startMinutes] = reminder.startTime
+      .split(":")
+      .map((num) => parseInt(num));
+
+    let [endHour, endMinutes] = reminder.finishTime
+      .split(":")
+      .map((num) => parseInt(num));
+
+    const interval = parseInt(reminder.timeInterval);
+
+    const notificationTimes = [];
+
+    let hour = startHour;
+    let minutes = startMinutes;
+
+    // goes to next day
+    if (
+      startHour > endHour ||
+      (startHour === endHour && startMinutes > endMinutes)
+    ) {
+      while (hour < 24) {
+        notificationTimes.push({ hour, minutes });
+
+        minutes += interval;
+
+        hour += Math.floor(minutes / 60);
+        minutes = minutes % 60;
+      }
+      hour -= 24;
+      while (hour < endHour || (hour === endHour && minutes <= endMinutes)) {
+        notificationTimes.push({ hour, minutes });
+
+        minutes += interval;
+
+        hour += Math.floor(minutes / 60);
+        minutes = minutes % 60;
+      }
+    }
+    // same day notification
+    else {
+      while (hour < endHour || (hour === endHour && minutes <= endMinutes)) {
+        notificationTimes.push({ hour, minutes });
+
+        minutes += interval;
+
+        hour += Math.floor(minutes / 60);
+        minutes = minutes % 60;
+      }
+    }
+
+    return notificationTimes;
+  };
+
+  const setupNotifications = useCallback((reminder) => {
+    const notificationTimes = findNotificationTimes(reminder);
+
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes();
+    const currentSeconds = now.getSeconds();
+
+    const timeoutHandles = [];
+
+    notificationTimes.forEach(({ hour, minutes }) => {
+      let timeout;
+      if (
+        hour < currentHour ||
+        (hour === currentHour && minutes <= currentMinutes)
+      ) {
+        timeout =
+          (hour - currentHour + 24) * 60 * 60 * 1000 +
+          (minutes - currentMinutes) * 60 * 1000 -
+          currentSeconds * 1000;
+      } else {
+        timeout =
+          (hour - currentHour) * 60 * 60 * 1000 +
+          (minutes - currentMinutes) * 60 * 1000 -
+          currentSeconds * 1000;
+      }
+
+      const handle = setTimeout(() => {
+        new Notification(reminder.label, { body: reminder.text });
+      }, timeout);
+
+      timeoutHandles.push(handle);
+    });
+
+    return timeoutHandles;
+  }, []);
+
+  useEffect(() => {
+    let allHandles = [];
+
+    reminders.forEach((reminder) => {
+      const reminderHandles = setupNotifications(reminder);
+      allHandles = [...allHandles, ...reminderHandles];
+    });
+
+    return () => {
+      allHandles.forEach((handle) => clearTimeout(handle));
+    };
+  }, [reminders, setupNotifications]);
+
   const selectFooterText = (array) => {
     const randomNum = Math.floor(Math.random() * array.length);
     setFooterText(array[randomNum].quote);
@@ -69,7 +179,6 @@ const Reminders = (props) => {
 
   const onSubmit = (reminderData, event) => {
     event.preventDefault();
-    console.log(reminderData);
     axios
       .post("/reminders", reminderData)
       .then((response) => {
@@ -87,6 +196,7 @@ const Reminders = (props) => {
   };
 
   useEffect(() => {
+    requestPermission();
     selectFooterText(quotes);
     fetchReminders();
   }, []);
@@ -104,6 +214,16 @@ const Reminders = (props) => {
                 onClick={handleOpenModal}
               />
             </div>
+
+            {window.Notification ? null : (
+              <div className={classes.information}>
+                Unfortunately, your browser does not support notifications,
+                which this feature of Mockingbird depends on. If you want to use
+                reminders, please open this page in Chrome or Safari on a
+                computer.
+              </div>
+            )}
+
             {reminders.length ? (
               reminders.map((r, index) => (
                 <div
@@ -149,8 +269,10 @@ const Reminders = (props) => {
                   Click on the plus icon to add a reminder.
                 </div>
                 <div className={classes.information}>
-                  Note: For this technology to work, you need to keep this app
-                  open in one of your tabs.
+                  <span className={classes.bold}>Note:</span> For this
+                  technology to work, you need to keep this app open in one of
+                  your tabs and allow this app to show you notifications when
+                  you're prompted.
                 </div>
               </Fragment>
             )}
