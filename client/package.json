@@ -17,7 +17,8 @@
     "react-toastify": "^7.0.3",
     "react-transition-group": "^4.4.1",
     "redux": "^4.0.5",
-    "react-modal": "^3.12.1"
+    "react-modal": "^3.12.1",
+    "eslint-config-prettier": "^8.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,8 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000/",
-  "devDependencies": {
-    "eslint-config-prettier": "^8.1.0"
-  }
+  "proxy": "http://localhost:5000/"
 }
