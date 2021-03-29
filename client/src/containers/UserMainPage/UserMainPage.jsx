@@ -90,7 +90,7 @@ const UserMainPage = () => {
       .toString()
       .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
 
-    fetch(`/today?date=${todayString}`, { credentials: "include" })
+    fetch(`/api/today?date=${todayString}`, { credentials: "include" })
       .then((blob) => blob.json())
       .then((response) => {
         if (response) {
