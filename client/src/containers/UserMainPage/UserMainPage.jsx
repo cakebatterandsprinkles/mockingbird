@@ -79,7 +79,6 @@ const UserMainPage = () => {
     })
       .then((blob) => blob.json())
       .then((response) => {
-        console.log(response);
         setTimeout(() => history.push("/calendar"), 2000);
       });
   };

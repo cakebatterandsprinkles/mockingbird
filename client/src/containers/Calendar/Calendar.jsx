@@ -215,7 +215,7 @@ class Calendar extends Component {
 
   renderDrawerContent = (date) => {
     let entry = this.state.monthlyEntries.find((entry) => {
-      return entry.date.substring(8, 10) === date.toString().padStart(2, "0");
+      return entry.date?.substring(8, 10) === date.toString().padStart(2, "0");
     });
     if (entry) {
       this.setState({
@@ -231,7 +231,7 @@ class Calendar extends Component {
 
   renderDailyEntryIcons = (date) => {
     const entry = this.state.monthlyEntries.find((item) => {
-      return item.date.substring(8, 10) === date.toString().padStart(2, "0");
+      return item.date?.substring(8, 10) === date.toString().padStart(2, "0");
     });
 
     const titles = [

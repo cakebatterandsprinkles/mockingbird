@@ -31,7 +31,10 @@ exports.getToday = (req, res, next) => {
     user: req.user.id,
     date: req.query.date,
   })
-    .then((entry) => res.json(entry))
+    .then((entry) => {
+      console.log(entry);
+      res.json(entry);
+    })
     .catch((err) => res.status(500).send(err));
 };
 
